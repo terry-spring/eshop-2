@@ -25,6 +25,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/demo")
+	public String eshop() {
+		return "index";
+	}
+	
 	@GetMapping("/addTour")
 	public String showForm(Model model) {
 		model.addAttribute("tour", new Tour());
