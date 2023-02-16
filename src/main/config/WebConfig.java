@@ -70,7 +70,7 @@ public class WebConfig implements WebMvcConfigurer{
 		return bean;
 	}
 	
-	@Bean
+	@Override
 	public Validator getValidator() {
 		return createValidator();
 	}

@@ -11,15 +11,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>Welcome to our travel agency</h1>
-	
-	<p>
-		<a th:href="@{/addTour}">Add a new tour</a>
-	</p>
-	
-	<p>
-		<a th:href="@{/showOffer}">Show our offer</a>
-	</p>
-	
+	<div class="container">
+		<h1>Welcome to our travel agency</h1>
+		
+		<a th:href="@{/addTour}" class="btn btn-primary">Add a new tour</a>
+		<a th:href="@{/showOffer}" class="btn btn-primary">Show our offer</a>
+		
+	</div>
 </body>
 </html>
