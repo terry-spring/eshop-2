@@ -1,3 +1,4 @@
+/*
 package main.model;
 
 import java.util.Date;
@@ -106,3 +107,4 @@ public class Tour {
 	}
 	
 }
+*/

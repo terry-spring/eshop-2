@@ -6,32 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.OrderDAO;
-import main.model.Order;
+import main.model.Orders;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
-	private OrderDAO tourDAO;
+	private OrderDAO orderDAO;
 	
 	@Override
-	public List<Order> getAll() {
-		return tourDAO.getAll();
+	public List<Orders> getAll() {
+		return orderDAO.getAll();
 	}
 
 	@Override
-	public Order getById(int id) {
-		return tourDAO.getById(id);
+	public Orders getById(long ord_num) {
+		return orderDAO.getById(ord_num);
 	}
 	
 	@Override
-	public void saveOrUpdate(Order tour) {
-		tourDAO.saveOrUpdate(tour);
+	public void saveOrUpdate(Orders order) {
+		orderDAO.saveOrUpdate(order);
 	}
 
 	@Override
-	public void delete(int id) {
-		tourDAO.delete(id);
+	public void delete(long ord_num) {
+		orderDAO.delete(ord_num);
 	}
 
 }

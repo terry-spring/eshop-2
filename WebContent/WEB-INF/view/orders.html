@@ -47,42 +47,48 @@
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
-						<h1>List of available tours</h1>
+						<h1>List of available orders</h1>
 					</div>
 					
 					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!tours.empty}">
+						<table class="table table-hover" th:if="${!orders.empty}">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Name</th>
-									<th scope="col">Code</th>
-									<th scope="col">Continent</th>
-									<th scope="col">Date</th>
+									<th scope="col">Order Date</th>
+									<th scope="col">Customer ID</th>
+									<th scope="col">Payment</th>
+									<th scope="col">Amount</th>
+									
+									<!-- <th scope="col">Continent</th>
 									<th scope="col">Duration</th>
-									<th scope="col">All Inclusive</th>
+									<th scope="col">All Inclusive</th> -->
+									
 									<th scope="col">Edit</th>
 									<th scope="col">Remove</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="tour : ${tours}">
-									<td th:text="${tourStat.count}"></td>					
-									<td th:text="${tour.name}"></td>
-									<td th:text="${tour.code}"></td>
-									<td th:text="${tour.continent}"></td>
-									<td th:text="${tour.date}"></td>
+								<tr th:each="order : ${orders}">
+									<td th:text="${orderStat.count}"></td>
+									<td th:text="${order.ord_date}"></td>
+									<td th:text="${order.cust_id}"></td>
+									<td th:text="${order.payment}"></td>
+									<td th:text="${order.amount}"></td>
+									
+									<!-- <td th:text="${tour.continent}"></td>
 									<td th:text="${tour.duration}"></td>
-									<td th:text="${tour.allInclusive}"></td>
-									<td><a class="btn btn-primary" th:href="@{/editTour/} + ${tour.id}">Edit</a></td>
-									<td><a class="btn btn-danger" th:href="@{/deleteTour/} + ${tour.id}">Delete</a></td>
+									<td th:text="${tour.allInclusive}"></td> -->
+									
+									<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${order.id}">Edit</a></td>
+									<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${order.id}">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-					<div class="row gx-5 justify-content-center" th:if="${tours.empty}">
-						<h3>No tours in the offer</h3>
+					<div class="row gx-5 justify-content-center" th:if="${orders.empty}">
+						<h3>No orders in the offer</h3>
 					</div>
 					
 					<div class="row gx-5 justify-content-center">

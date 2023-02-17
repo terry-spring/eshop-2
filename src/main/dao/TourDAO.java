@@ -1,3 +1,4 @@
+/*
 package main.dao;
 
 import java.util.List;
@@ -15,3 +16,4 @@ public interface TourDAO {
 	public void delete(int id);
 	
 }
+*/

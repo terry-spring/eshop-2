@@ -1,3 +1,4 @@
+/*
 package main.service;
 
 import java.util.List;
@@ -15,3 +16,4 @@ public interface TourService {
 	public void delete(int id);
 
 }
+*/

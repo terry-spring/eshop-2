@@ -2,16 +2,16 @@ package main.dao;
 
 import java.util.List;
 
-import main.model.Order;
+import main.model.Orders;
 
 public interface OrderDAO {
 	
-	public List<Order> getAll();
+	public List<Orders> getAll();
 	
-	public Order getById(int id);
+	public Orders getById(long ord_num);
 	
-	public void saveOrUpdate(Order tour);
+	public void saveOrUpdate(Orders order);
 	
-	public void delete(int id);
+	public void delete(long ord_num);
 
 }
