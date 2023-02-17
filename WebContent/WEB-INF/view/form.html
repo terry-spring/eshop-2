@@ -53,34 +53,39 @@
 							<form action="#" th:action="@{/processForm}" th:object="${tour}" method="post">
 							
 								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{id}">
+									<input type="hidden" class="form-control" th:field="*{ord_num}">
+								</div>
+								
+								<div class="form-group">
+									<label>Order Date</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('ord_date')}" th:errors="*{ord_date}"></div>
+									<input type="date" class="form-control" th:field="*{ord_date}">
+								</div>
+								
+								<div class="form-group">
+									<label>Customer ID</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cust_id')}" th:errors="*{cust_id}"></div>
+									<input type="text" class="form-control" th:field="*{cust_id}">
+									<!-- <small class="form-text text-muted">Expected format: LL-DDL where L-letter, D-digit</small> -->
 								</div>
 							
 								<div class="form-group">
-									<label>Name</label>
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-									<input type="text" class="form-control" th:field="*{name}">
+									<label>Payment</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('payment')}" th:errors="*{payment}"></div>
+									<input type="text" class="form-control" th:field="*{payment}">
 								</div>
 								
 								<div class="form-group">
-									<label>Code</label>
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></div>
-									<input type="text" class="form-control" th:field="*{code}">
-									<small class="form-text text-muted">Expected format: LL-DDL where L-letter, D-digit</small>
+									<label>Payment</label>
 								</div>
 								
+								<!--
 								<div class="form-group">
 									<label>Continent</label>
 									<select name="continent" class="form-control">
 										<option th:each="continent : ${T(main.model.Tour.Continent).values()}"
 												th:value="${continent}" th:text="${continent}"></option>
 									</select>
-								</div>
-								
-								<div class="form-group">
-									<label>Start date</label>
-									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
-									<input type="date" class="form-control" th:field="*{date}">
 								</div>
 								
 								<div class="form-group">
@@ -93,6 +98,7 @@
 									<input type="checkbox" th:field="*{allInclusive}">
 									<label>All Inclusive</label>
 								</div>
+								-->
 								
 								<div class="form-row">
 									<div class="col">
