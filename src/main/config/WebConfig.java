@@ -21,13 +21,6 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @ComponentScan("main")
 public class WebConfig implements WebMvcConfigurer{
 	
-//	@Bean
-//	public ViewResolver initViewResolver() {
-//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setPrefix("/WEB-INF/view/");
-//		resolver.setSuffix(".html");
-//		return resolver;
-//	}
 	@Autowired
 	private WebApplicationContext context;
 	
@@ -70,7 +63,7 @@ public class WebConfig implements WebMvcConfigurer{
 		return bean;
 	}
 	
-	@Bean
+	@Override
 	public Validator getValidator() {
 		return createValidator();
 	}
