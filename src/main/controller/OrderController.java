@@ -13,54 +13,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Tour;
-import main.service.TourService;
+import main.model.Order;
+import main.service.OrderService;
 
 @Controller
 public class OrderController {
 	
 	@Autowired
-	private TourService tourService;
+	private OrderService orderService;
 
-	@GetMapping("/addTour")
+	@GetMapping("/addOrder")
 	public String showForm(Model model) {
-		model.addAttribute("tour", new Tour());
+		model.addAttribute("order", new Order());
 		return "form";
 	}
 	
 	@PostMapping("/processForm")
-	public String showTourData(@Valid @ModelAttribute Tour tour, BindingResult bindingResult) {
+	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "form";
 		}
-		tourService.saveOrUpdate(tour);
-		return "redirect:showOffer";
+		orderService.saveOrUpdate(order);
+		return "redirect:showOrder";
 	}
 	
-	@GetMapping("/showOffer")
-	public String getTours(Model model) {
-		List<Tour> tours = tourService.getAll();
-		model.addAttribute("tours", tours);
-		return "tours";
+	@GetMapping("/showOrder")
+	public String getOrders(Model model) {
+		List<Order> orders = orderService.getAll();
+		model.addAttribute("orders", orders);
+		return "orders";
 	}
 	
-	@GetMapping("/deleteTour/{id}")
-	public String deleteTour(@PathVariable int id) {
-		Tour tour = tourService.getById(id);
-		if(tour != null) {
-			tourService.delete(id);
+	@GetMapping("/deleteOrder/{id}")
+	public String deleteOrder(@PathVariable int id) {
+		Order order = orderService.getById(id);
+		if(order != null) {
+			orderService.delete(id);
 		}
-		return "redirect:/showOffer";
+		return "redirect:/showOrder";
 	}
 	
-	@GetMapping("/editTour/{id}")
-	public String editTour(@PathVariable int id, Model model) {
-		Tour tour = tourService.getById(id);
-		if(tour != null) {
-			model.addAttribute("tour", tour);
+	@GetMapping("/editOrder/{id}")
+	public String editOrder(@PathVariable int id, Model model) {
+		Order order = orderService.getById(id);
+		if(order != null) {
+			model.addAttribute("order", order);
 			return "form";
 		}
-		return "redirect:/showOffer";
+		return "redirect:/showOrder";
 	}
 
 }
