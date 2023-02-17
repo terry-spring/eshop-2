@@ -33,17 +33,17 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	@Override
 	@Transactional
-	public void saveOrUpdate(Orders order) {
+	public void saveOrUpdate(Orders orders) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(order);
+		session.saveOrUpdate(orders);
 	}
 
 	@Override
 	@Transactional
 	public void delete(long ord_num) {
 		Session session = sessionFactory.getCurrentSession();
-		Orders order = getById(ord_num);
-		session.delete(order);
+		Orders orders = getById(ord_num);
+		session.delete(orders);
 	}
 
 }

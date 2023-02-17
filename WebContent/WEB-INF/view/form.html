@@ -50,7 +50,7 @@
                         <div class="col-sm">
 							<h1>Add new order</h1>
 							
-							<form action="#" th:action="@{/processForm}" th:object="${order}" method="post">
+							<form action="#" th:action="@{/processForm}" th:object="${orders}" method="post">
 							
 								<div class="form-group">
 									<input type="hidden" class="form-control" th:field="*{ord_num}">

@@ -51,7 +51,7 @@
 					</div>
 					
 					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!orders.empty}">
+						<table class="table table-hover" th:if="${!orderss.empty}">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
@@ -69,25 +69,25 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="order : ${orders}">
-									<td th:text="${orderStat.count}"></td>
-									<td th:text="${order.ord_date}"></td>
-									<td th:text="${order.cust_id}"></td>
-									<td th:text="${order.payment}"></td>
-									<td th:text="${order.amount}"></td>
+								<tr th:each="orders : ${orderss}">
+									<td th:text="${ordersStat.count}"></td>
+									<td th:text="${orders.ord_date}"></td>
+									<td th:text="${orders.cust_id}"></td>
+									<td th:text="${orders.payment}"></td>
+									<td th:text="${orders.amount}"></td>
 									
 									<!-- <td th:text="${tour.continent}"></td>
 									<td th:text="${tour.duration}"></td>
 									<td th:text="${tour.allInclusive}"></td> -->
 									
-									<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${order.id}">Edit</a></td>
-									<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${order.id}">Delete</a></td>
+									<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${orders.ord_num}">Edit</a></td>
+									<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${orders.ord_num}">Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-					<div class="row gx-5 justify-content-center" th:if="${orders.empty}">
+					<div class="row gx-5 justify-content-center" th:if="${orderss.empty}">
 						<h3>No orders in the offer</h3>
 					</div>
 					

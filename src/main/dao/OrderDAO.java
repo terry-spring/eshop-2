@@ -10,7 +10,7 @@ public interface OrderDAO {
 	
 	public Orders getById(long ord_num);
 	
-	public void saveOrUpdate(Orders order);
+	public void saveOrUpdate(Orders orders);
 	
 	public void delete(long ord_num);
 

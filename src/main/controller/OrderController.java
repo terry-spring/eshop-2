@@ -24,30 +24,30 @@ public class OrderController {
 
 	@GetMapping("/addOrder")
 	public String showForm(Model model) {
-		model.addAttribute("order", new Orders());
+		model.addAttribute("orders", new Orders());
 		return "form";
 	}
 	
 	@PostMapping("/processForm")
-	public String showOrderData(@Valid @ModelAttribute Orders order, BindingResult bindingResult) {
+	public String showOrderData(@Valid @ModelAttribute Orders orders, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "form";
 		}
-		orderService.saveOrUpdate(order);
+		orderService.saveOrUpdate(orders);
 		return "redirect:showOffer";
 	}
 	
 	@GetMapping("/showOffer")
 	public String getOrders(Model model) {
-		List<Orders> orders = orderService.getAll();
-		model.addAttribute("order", orders);
+		List<Orders> orderss = orderService.getAll();
+		model.addAttribute("orderss", orderss);
 		return "orders";
 	}
 	
 	@GetMapping("/deleteOrder/{ord_num}")
 	public String deleteOrder(@PathVariable long ord_num) {
-		Orders order = orderService.getById(ord_num);
-		if(order != null) {
+		Orders orders = orderService.getById(ord_num);
+		if(orders != null) {
 			orderService.delete(ord_num);
 		}
 		return "redirect:/showOffer";
@@ -55,9 +55,9 @@ public class OrderController {
 	
 	@GetMapping("/editOrder/{ord_num}")
 	public String editOrder(@PathVariable long ord_num, Model model) {
-		Orders order = orderService.getById(ord_num);
-		if(order != null) {
-			model.addAttribute("order", order);
+		Orders orders = orderService.getById(ord_num);
+		if(orders != null) {
+			model.addAttribute("orders", orders);
 			return "form";
 		}
 		return "redirect:/showOffer";
