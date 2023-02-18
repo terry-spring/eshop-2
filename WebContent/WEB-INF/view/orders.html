@@ -59,11 +59,6 @@
 									<th scope="col">Customer ID</th>
 									<th scope="col">Payment</th>
 									<th scope="col">Amount</th>
-									
-									<!-- <th scope="col">Continent</th>
-									<th scope="col">Duration</th>
-									<th scope="col">All Inclusive</th> -->
-									
 									<th scope="col">Edit</th>
 									<th scope="col">Remove</th>
 								</tr>
@@ -75,11 +70,6 @@
 									<td th:text="${orders.cust_id}"></td>
 									<td th:text="${orders.payment}"></td>
 									<td th:text="${orders.amount}"></td>
-									
-									<!-- <td th:text="${tour.continent}"></td>
-									<td th:text="${tour.duration}"></td>
-									<td th:text="${tour.allInclusive}"></td> -->
-									
 									<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${orders.ord_num}">Edit</a></td>
 									<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${orders.ord_num}">Delete</a></td>
 								</tr>
