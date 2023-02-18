@@ -60,7 +60,9 @@
 									<th scope="col">Payment</th>
 									<th scope="col">Amount</th>
 									<th scope="col">Edit</th>
+									<th scope="col">Edit details</th>
 									<th scope="col">Remove</th>
+									<th scope="col">Details</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,7 +73,9 @@
 									<td th:text="${orders.payment}"></td>
 									<td th:text="${orders.amount}"></td>
 									<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${orders.ord_num}">Edit</a></td>
+									<td><a class="btn btn-primary" th:href="@{/editOrderDetails/} + ${orders.ord_num}">Edit details</a></td>
 									<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${orders.ord_num}">Delete</a></td>
+									<td><a class="btn btn-success" th:href="@{/showOrderDetails/} + ${orders.ord_num}">Details</a></td>
 								</tr>
 							</tbody>
 						</table>
