@@ -37,7 +37,7 @@ public class Orders {
 	
 	@Min(value = 10, message = "{order.amount}")
 	@Max(value = 1000, message = "{order.amount}")
-	private BigDecimal amount;
+	private BigDecimal amount = new BigDecimal("10");
 
 	public long getOrd_num() {
 		return ord_num;
