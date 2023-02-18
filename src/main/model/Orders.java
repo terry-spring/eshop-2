@@ -3,10 +3,13 @@ package main.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -38,6 +41,12 @@ public class Orders {
 	@Min(value = 10, message = "{order.amount}")
 	@Max(value = 1000, message = "{order.amount}")
 	private BigDecimal amount = new BigDecimal("10");
+	
+	/*
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_details_id")
+	private OrderDetails orderDetails;
+	*/
 
 	public long getOrd_num() {
 		return ord_num;
