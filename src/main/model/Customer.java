@@ -2,6 +2,14 @@ package main.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -12,11 +20,16 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
 public class Tour {
 	
 	public enum Continent {
 		AFRICA, ASIS, EUROPE, NORTH_AMERICA, SOUTH_AMERICA;
 	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	
 	@NotBlank(message = "{tour.name.notblank}")
 	@Size(min = 5, message = "{tour.name.size}")
@@ -36,8 +49,19 @@ public class Tour {
 	@Max(value = 21, message = "{tour.duration}")
 	private int duration;
 	
-	private boolean allInclusive;
+	@Column(name = "all_inclusive")
+	private boolean allInclusive = false;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tour_detail_id")
+	private TourDetail tourDetail;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -74,6 +98,11 @@ public class Tour {
 	public void setAllInclusive(boolean allInclusive) {
 		this.allInclusive = allInclusive;
 	}
-	
+	public TourDetail getTourDetail() {
+		return tourDetail;
+	}
+	public void setTourDetail(TourDetail tourDetail) {
+		this.tourDetail = tourDetail;
+	}
 	
 }
