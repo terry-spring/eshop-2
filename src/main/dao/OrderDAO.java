@@ -2,15 +2,15 @@ package main.dao;
 
 import java.util.List;
 
-import main.model.Orders;
+import main.model.Order;
 
 public interface OrderDAO {
 	
-	public List<Orders> getAll();
+	public List<Order> getAll();
 	
-	public Orders getById(long ord_num);
+	public Order getById(long ord_num);
 	
-	public void saveOrUpdate(Orders orders);
+	public void saveOrUpdate(Order orders);
 	
 	public void delete(long ord_num);
 

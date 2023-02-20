@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Orders;
+import main.model.Order;
 import main.service.OrderService;
 
 @Controller
@@ -22,45 +22,45 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	@GetMapping("/addOrder")
+	@GetMapping("/add-order")
 	public String showForm(Model model) {
-		model.addAttribute("orders", new Orders());
-		return "form";
+		model.addAttribute("order", new Order());
+		return "order-form";
 	}
 	
-	@PostMapping("/processForm")
-	public String showOrderData(@Valid @ModelAttribute Orders orders, BindingResult bindingResult) {
+	@PostMapping("/process-form")
+	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			return "form";
+			return "order-form";
 		}
-		orderService.saveOrUpdate(orders);
-		return "redirect:showOffer";
+		orderService.saveOrUpdate(order);
+		return "redirect:show-offer";
 	}
 	
-	@GetMapping("/showOffer")
+	@GetMapping("/show-offer")
 	public String getOrders(Model model) {
-		List<Orders> orderss = orderService.getAll();
-		model.addAttribute("orderss", orderss);
+		List<Order> orders = orderService.getAll();
+		model.addAttribute("orders", orders);
 		return "orders";
 	}
 	
-	@GetMapping("/deleteOrder/{ord_num}")
-	public String deleteOrder(@PathVariable long ord_num) {
-		Orders orders = orderService.getById(ord_num);
-		if(orders != null) {
-			orderService.delete(ord_num);
+	@GetMapping("/delete-order/{ord_num}")
+	public String deleteOrder(@PathVariable long orderId) {
+		Order order = orderService.getById(orderId);
+		if(order != null) {
+			orderService.delete(orderId);
 		}
-		return "redirect:/showOffer";
+		return "redirect:/show-offer";
 	}
 	
-	@GetMapping("/editOrder/{ord_num}")
-	public String editOrder(@PathVariable long ord_num, Model model) {
-		Orders orders = orderService.getById(ord_num);
-		if(orders != null) {
-			model.addAttribute("orders", orders);
+	@GetMapping("/edit-order/{ord_num}")
+	public String editOrder(@PathVariable long orderId, Model model) {
+		Order order = orderService.getById(orderId);
+		if(order != null) {
+			model.addAttribute("order", order);
 			return "form";
 		}
-		return "redirect:/showOffer";
+		return "redirect:/show-offer";
 	}
 
 }

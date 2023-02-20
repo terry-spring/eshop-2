@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import main.model.Orders;
+import main.model.Order;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -19,21 +19,21 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	@Override
 	@Transactional
-	public List<Orders> getAll() {
+	public List<Order> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Orders o", Orders.class).list();
+		return session.createQuery("from sales_order o", Order.class).list();
 	}
 
 	@Override
 	@Transactional
-	public Orders getById(long ord_num) {
+	public Order getById(long ord_num) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(Orders.class, ord_num);
+		return session.get(Order.class, ord_num);
 	}
 	
 	@Override
 	@Transactional
-	public void saveOrUpdate(Orders orders) {
+	public void saveOrUpdate(Order orders) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(orders);
 	}
@@ -42,7 +42,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Transactional
 	public void delete(long ord_num) {
 		Session session = sessionFactory.getCurrentSession();
-		Orders orders = getById(ord_num);
+		Order orders = getById(ord_num);
 		session.delete(orders);
 	}
 
