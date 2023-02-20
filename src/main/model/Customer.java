@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Tour {
+public class Customer {
 	
 	public enum Continent {
 		AFRICA, ASIS, EUROPE, NORTH_AMERICA, SOUTH_AMERICA;
