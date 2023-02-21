@@ -34,33 +34,33 @@ public class OrderController {
 			return "order-form";
 		}
 		orderService.saveOrUpdate(order);
-		return "redirect:show-offer";
+		return "redirect:show-order";
 	}
 	
-	@GetMapping("/show-offer")
+	@GetMapping("/show-order")
 	public String getOrders(Model model) {
 		List<Order> orders = orderService.getAll();
 		model.addAttribute("orders", orders);
 		return "orders";
 	}
 	
-	@GetMapping("/delete-order/{ord_num}")
+	@GetMapping("/delete-order/{orderId}")
 	public String deleteOrder(@PathVariable long orderId) {
 		Order order = orderService.getById(orderId);
 		if(order != null) {
 			orderService.delete(orderId);
 		}
-		return "redirect:/show-offer";
+		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/edit-order/{ord_num}")
+	@GetMapping("/edit-order/{orderId}")
 	public String editOrder(@PathVariable long orderId, Model model) {
 		Order order = orderService.getById(orderId);
 		if(order != null) {
 			model.addAttribute("order", order);
 			return "order-form";
 		}
-		return "redirect:/show-offer";
+		return "redirect:/show-order";
 	}
 
 }
