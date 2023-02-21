@@ -10,12 +10,15 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String getHome() {
-		return "home";
+		return "index";
 	}
 	
+	/*
 	@GetMapping("/demo")
 	public String eshop() {
 		return "index";
 	}
-	
+
+	 */
+
 }

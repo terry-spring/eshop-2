@@ -58,7 +58,7 @@ public class OrderController {
 		Order order = orderService.getById(orderId);
 		if(order != null) {
 			model.addAttribute("order", order);
-			return "form";
+			return "order-form";
 		}
 		return "redirect:/show-offer";
 	}

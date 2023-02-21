@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity(name = "sales_order")
+@Entity(name = "orders")
 public class Order {
 
 	public enum Payment {
