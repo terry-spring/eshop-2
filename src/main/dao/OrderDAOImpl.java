@@ -21,29 +21,29 @@ public class OrderDAOImpl implements OrderDAO {
 	@Transactional
 	public List<Order> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from sales_order o", Order.class).list();
+		return session.createQuery("from orders o", Order.class).list();
 	}
 
 	@Override
 	@Transactional
-	public Order getById(long ord_num) {
+	public Order getById(long orderId) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(Order.class, ord_num);
+		return session.get(Order.class, orderId);
 	}
 	
 	@Override
 	@Transactional
-	public void saveOrUpdate(Order orders) {
+	public void saveOrUpdate(Order order) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(orders);
+		session.saveOrUpdate(order);
 	}
 
 	@Override
 	@Transactional
-	public void delete(long ord_num) {
+	public void delete(long orderId) {
 		Session session = sessionFactory.getCurrentSession();
-		Order orders = getById(ord_num);
-		session.delete(orders);
+		Order order = getById(orderId);
+		session.delete(order);
 	}
 
 }

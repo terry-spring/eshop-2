@@ -8,10 +8,10 @@ public interface OrderDAO {
 	
 	public List<Order> getAll();
 	
-	public Order getById(long ord_num);
+	public Order getById(long orderId);
 	
-	public void saveOrUpdate(Order orders);
+	public void saveOrUpdate(Order order);
 	
-	public void delete(long ord_num);
+	public void delete(long orderId);
 
 }
