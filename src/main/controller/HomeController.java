@@ -12,13 +12,5 @@ public class HomeController {
 	public String getHome() {
 		return "index";
 	}
-	
-	/*
-	@GetMapping("/demo")
-	public String eshop() {
-		return "index";
-	}
-
-	 */
 
 }
