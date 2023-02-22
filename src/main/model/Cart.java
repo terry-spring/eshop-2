@@ -26,6 +26,9 @@ public class Cart {
 	@Column(name = "cart_id")
 	private long cartId;
 	
+	@Column(name = "product_id")
+	private long productId;
+	
 	@NotNull(message = "{cart.date.notnull}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "cart_date")
@@ -49,6 +52,14 @@ public class Cart {
 	
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 	private List<CartDetail> cartDetails;
+	
+	public long getProductId() {
+		return productId;
+	}
+	
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
 
 	public long getCartId() {
 		return cartId;
