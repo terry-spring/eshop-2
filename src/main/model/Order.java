@@ -2,6 +2,7 @@ package main.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -45,6 +46,9 @@ public class Order {
 	@JoinColumn(name = "order_details_id")
 	private OrderDetails orderDetails;
 	*/
+	
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	private List<OrderDetail> orderDetails;
 
 	public long getOrderId() {
 		return orderId;
@@ -84,6 +88,14 @@ public class Order {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 	
 }
