@@ -28,7 +28,7 @@ public class OrderController {
 		return "order-form";
 	}
 	
-	@PostMapping("/process-form")
+	@PostMapping("/order-process-form")
 	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "order-form";
