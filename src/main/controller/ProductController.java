@@ -8,17 +8,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import main.model.Product;
-import main.service.ProductService;
+import main.repository.ProductRepository;
 
 @Controller
 public class ProductController {
 
 	@Autowired
-	private ProductService productService;
+	private ProductRepository productRepository; ;
 	
 	@GetMapping("/showProduct")
 	public String getProducts(Model model) {
-		List<Product> products = productService.getAll();
+		List<Product> products = productRepository.findAll();
 		model.addAttribute("products", products);
 		return "product";
 	}
