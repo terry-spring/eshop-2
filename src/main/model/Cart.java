@@ -26,9 +26,6 @@ public class Cart {
 	@Column(name = "cart_id")
 	private long cartId;
 	
-	@Column(name = "product_id")
-	private long productId;
-	
 	@NotNull(message = "{cart.date.notnull}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "cart_date")
@@ -52,45 +49,37 @@ public class Cart {
 	
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 	private List<CartDetail> cartDetails;
-	
-	public long getProductId() {
-		return productId;
-	}
-	
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
 
-	public long getCartId() {
-		return cartId;
-	}
+    public long getCartId() {
+        return cartId;
+    }
 
-	public void setCartId(long cartId) {
-		this.cartId = cartId;
-	}
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
+    }
 
-	public Date getOrderDate() {
-		return orderDate;
-	}
+    public Date getOrderDate() {
+        return orderDate;
+    }
 
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
-	public List<CartDetail> getCartDetails() {
-		return cartDetails;
-	}
+    public List<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
 
-	public void setCartDetails(List<CartDetail> cartDetails) {
-		this.cartDetails = cartDetails;
-	}
+    public void setCartDetails(List<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
 
 }
