@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
+    <head>
         <meta charset="UTF-8">
         <title>eshop</title>
         <link rel="icon" type="image/x-icon" th:href="@{resources/ico/favicon.ico}">
@@ -52,8 +52,29 @@
 							<h1>新增訂單</h1>
 							
 							<form action="#" th:action="@{/order-process-form}" th:object="${order}" method="post">
+							
 								<div class="form-group">
 									<input type="hidden" class="form-control" th:field="*{orderId}">
+								</div>
+								
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderDetail.orderDetailId}">
+								</div>
+					
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderDetail.productId}">
+								</div>
+
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" th:field="*{orderDetail.orderPrice}">
+                                </div>
+					
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderDetail.orderQuantity}">
+								</div>
+								
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderDetail.discount}">
 								</div>
 								
 								<div class="form-group">

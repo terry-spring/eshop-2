@@ -15,7 +15,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Order {
 
 	public enum Payment {
-		現金, 信用卡;
+		money, card;
+	}
+
+	public Order() {
+		setOrderDetail(new OrderDetail());
 	}
 	
 	@Id
@@ -40,11 +44,9 @@ public class Order {
 	@Column(name = "amount")
 	private BigDecimal amount = new BigDecimal("0");
 
-	/*
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_details_id")
-	private OrderDetails orderDetails;
-	*/
+	@JoinColumn(name = "order_detail_id")
+	private OrderDetail orderDetail;
 
 	public long getOrderId() {
 		return orderId;
@@ -84,6 +86,14 @@ public class Order {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public OrderDetail getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(OrderDetail orderDetail) {
+		this.orderDetail = orderDetail;
 	}
 	
 }

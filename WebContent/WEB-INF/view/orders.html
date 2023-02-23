@@ -70,10 +70,10 @@
 									<td th:text="${order.customerId}"></td>
 									<td th:text="${order.payment}"></td>
 									<td th:text="${order.amount}"></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${order.orderId}">編輯</a></td>
 									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
+									<td><a class="btn btn-success" th:href="@{/show-order-detail/} + ${order.orderId}">顯示</a></td>
 								</tr>
 							</tbody>
 						</table>
