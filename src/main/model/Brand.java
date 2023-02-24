@@ -1,10 +1,15 @@
 package main.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -28,6 +33,9 @@ public class Brand {
      * 
      * @OneToOne(mappedBy = "product") private Product product;
      */
+    
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Product> products;
 
     public long getId() {
         return id;
@@ -44,5 +52,13 @@ public class Brand {
     public void setBrandDescription(String brandDescription) {
         this.brandDescription = brandDescription;
     }
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 }

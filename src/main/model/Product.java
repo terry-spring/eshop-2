@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 
 @Entity
 @Table(name = "product")
@@ -23,11 +24,11 @@ public class Product {
     @Column(name = "product_id")
 	private long id;
 	
-	@NotNull(message = "{product.brand.notnull}")
-	@Column(name = "brand")
-	private String brand;
-	
-    @Column(name = "product_name",length = 100)
+	@ManyToOne
+	@JoinColumn(name = "brand_brand_id")
+	private Brand brand;
+
+	@Column(name = "product_name",length = 100)
     @NotBlank(message = "{product.name.notblank}")
     @Size(min = 2, message = "{product.name.size}")
     private String productName;
@@ -55,16 +56,16 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
-	}
-
-	public String getBrand() {
+	public Brand getBrand() {
 		return brand;
 	}
-
-	public void setBrand(String brand) {
+	
+	public void setBrand(Brand brand) {
 		this.brand = brand;
+	}
+	
+	public String getProductName() {
+		return productName;
 	}
 
 	public void setProductName(String productName) {
