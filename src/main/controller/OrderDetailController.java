@@ -43,9 +43,9 @@ public class OrderDetailController {
         Order order = orderService.getById(orderId);
         if(order != null) {
             model.addAttribute("orderDetail", order.getOrderDetail());
-            System.out.println("我愛佤邦");
             return "order-detail-from";
         }
+        System.out.println("test");
         return "redirect:/show-order";
     }
 

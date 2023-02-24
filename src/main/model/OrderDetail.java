@@ -22,13 +22,13 @@ public class OrderDetail {
     private long productId;
     
     @Column(name = "order_price")
-    private BigDecimal orderPrice;
+    private BigDecimal orderPrice = new BigDecimal("0");
     
     @Column(name = "order_quantity")
     private long orderQuantity;
 
     @Column(name = "discount")
-    private BigDecimal discount;
+    private BigDecimal discount = new BigDecimal("0");
 
     public long getOrderDetailId() {
         return orderDetailId;
