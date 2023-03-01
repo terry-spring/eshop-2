@@ -93,8 +93,7 @@
                                 <div class="form-group">
                                     <label>付款方式</label>
                                     <select name="payment" class="form-control">
-                                        <option th:each="payment : ${T(main.model.Order.Payment).values()}"
-                                                th:value="${payment}" th:text="${payment}"></option>
+                                        <option th:each="payment : ${T(main.model.Order.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
                                     </select>
                                 </div>
 								

@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="col-sm-8">
-							<h1>新增訂單</h1>
+							<h1>訂單詳細內容</h1>
 							
 							<form action="#" th:action="@{/order-detail-process-form}" th:object="${orderDetail}" method="post">
 								<div class="form-group">
@@ -64,19 +64,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Price</label>
+                                    <label>單價</label>
                                     <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('orderPrice')}" th:errors="*{orderPrice}"></div>
                                     <input type="number" class="form-control" th:field="*{orderPrice}">
                                 </div>
 								
 								<div class="form-group">
-									<label>Quantity</label>
+									<label>購買數量</label>
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('orderQuantity')}" th:errors="*{orderQuantity}"></div>
 									<input type="number" class="form-control" th:field="*{orderQuantity}">
 								</div>
 								
 								<div class="form-group">
-									<label>Discount</label>
+									<label>折扣</label>
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"></div>
 									<input type="number" class="form-control" th:field="*{discount}">
 								</div>
