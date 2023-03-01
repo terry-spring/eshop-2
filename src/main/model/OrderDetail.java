@@ -1,105 +1,83 @@
 package main.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail {
-	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@NotBlank(message = "{tour.productId.notblank}")
-	@Column(name = "order_detail_id")
-	private long orderDetailId;
-	
-	@NotBlank(message = "{tour.productId.notblank}")
-	@Column(name = "product_id")
-	private long productId;
-	
-	@NotBlank(message = "{tour.orderId.notblank}")
-	@Column(name = "order_id")
-	private long orderId;
-	
-	@NotBlank(message = "{tour.quantity.notblank}")
-	@Column(name = "quantity")
-	private long quantity;
-	
-	@NotBlank(message = "{tour.name.notblank}")
-	@Column(name = "unit_price")
-	private BigDecimal unitPrice;
-	
-	@NotBlank(message = "{tour.name.notblank}")
-	private BigDecimal discount;
-	
-	@ManyToOne
-	@JoinColumn(name = "orders_order_id")
-	private Order order;
 
-	public long getOrderDetailId() {
-		return orderDetailId;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_detail_id")
+    private long orderDetailId;
+    
+    /*
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+    */
 
-	public void setOrderDetailId(long orderDetailId) {
-		this.orderDetailId = orderDetailId;
-	}
+    @Column(name = "product_id")
+    private long productId;
+    
+    @Column(name = "order_price")
+    private BigDecimal orderPrice = new BigDecimal("0");
+    
+    @Column(name = "order_quantity")
+    private long orderQuantity;
 
-	public long getProductId() {
-		return productId;
-	}
+    @Column(name = "discount")
+    private BigDecimal discount = new BigDecimal("0");
 
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
+    public long getOrderDetailId() {
+        return orderDetailId;
+    }
 
-	public long getOrderId() {
-		return orderId;
-	}
+    public void setOrderDetailId(long orderDetailId) {
+        this.orderDetailId = orderDetailId;
+    }
 
-	public void setOrderId(long orderId) {
-		this.orderId = orderId;
-	}
+    public long getProductId() {
+        return productId;
+    }
 
-	public long getQuantity() {
-		return quantity;
-	}
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
 
-	public void setQuantity(long quantity) {
-		this.quantity = quantity;
-	}
+    public BigDecimal getOrderPrice() {
+        return orderPrice;
+    }
 
-	public BigDecimal getUnitPrice() {
-		return unitPrice;
-	}
+    public void setOrderPrice(BigDecimal orderPrice) {
+        this.orderPrice = orderPrice;
+    }
 
-	public void setUnitPrice(BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
-	}
+    public long getOrderQuantity() {
+        return orderQuantity;
+    }
 
-	public BigDecimal getDiscount() {
-		return discount;
-	}
+    public void setOrderQuantity(long orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
 
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
-	}
+    public BigDecimal getDiscount() {
+        return discount;
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+    
+    /*
+    public Order getOrder() {
+        return order;
+    }
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    */
 
 }
