@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
+    <head>
         <meta charset="UTF-8">
         <title>eshop</title>
         <link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
@@ -10,9 +10,9 @@
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
         <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
-	</head>
-	<body class="d-flex flex-column h-100">
-		<main class="flex-shrink-0">
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container px-5">
@@ -44,48 +44,33 @@
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
-                    <div class="row gx-5 justify-content-center">
-						<h1>所有訂單</h1>
-					</div>
-					
-					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!orders.empty}">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">訂單日期</th>
-									<th scope="col">客戶編號</th>
-									<th scope="col">付款方式</th>
-									<th scope="col">總額</th>
-									<th scope="col">編輯內容</th>
-									<th scope="col">編輯詳細內容</th>
-									<th scope="col">刪除訂單</th>
-									<th scope="col">詳細內容</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="order : ${orders}">
-									<td th:text="${orderStat.count}"></td>
-									<td th:text="${order.orderDate}"></td>
-									<td th:text="${order.customerId}"></td>
-									<td th:text="${order.payment}"></td>
-									<td th:text="${order.amount}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-                                    <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-detail/} + ${order.orderId}">顯示</a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					
-					<div class="row gx-5 justify-content-center" th:if="${orders.empty}">
-						<h3>沒有任何訂單</h3>
-					</div>
-					
-					<div class="row gx-5 justify-content-center">
-						<a th:href="@{/}" class="btn btn-warning">返回</a>
-					</div>
+                    <div class="row">
+                      <h1 th:text="${order.orderId} + ' details'"></h1>
+                    </div>
+
+                    <div class="row">
+                      <label>產品編號</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.productId}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>單價</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.orderPrice}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>購買數量</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.orderQuantity}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <label>折扣</label>
+                      <input type="text" class="form-control" th:field="${order.orderDetail.discount}" readonly>
+                    </div>
+
+                    <div class="row">
+                      <a th:href="@{/show-order}" class="btn btn-warning">返回</a>
+                    </div>
                 </div>
             </section>
         </main>
@@ -104,5 +89,5 @@
                 </div>
             </div>
         </footer>
-	</body>
+    </body>
 </html>
