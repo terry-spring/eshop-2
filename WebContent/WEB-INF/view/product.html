@@ -35,14 +35,14 @@
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
-						<h1>所有產品</h1>
+						<h1>所有產品 </h1>
+						<h4 th:if="${!login_user.empty}" th:text="${login_user}"></h4>
 					</div>
 					
 					<div class="row gx-5 justify-content-center">
 						<table class="table table-hover" th:if="${!products.empty}">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
 									<th scope="col">產品編號</th>
 									<th scope="col">品牌</th>
 									<th scope="col">產品名稱</th>
@@ -57,17 +57,17 @@
 							</thead>
 							<tbody>
 								<tr th:each="product : ${products}">
-									<td th:text="${productStat.count}"></td>					
-									<td th:text="${product.productId}"></td>
-									<td th:text="${product.brand}"></td>
-									<td th:text="${product.name}"></td>
+									<td th:text="${product.id}"></td>
+									<td th:text="${product.brand.brandDescription}"></td>
+									<a type ="hidden" th:value ="${product.brand.id}"></a>
+									<td th:text="${product.productName}"></td>
 									<td th:text="${product.productImage}"></td>
 									<td th:text="${product.productDescription}"></td>
 									<td th:text="${product.productPrice}"></td>
 									<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
-						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
-									<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
+									<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.id}">加入購物車</a></td>
+									<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.id}">編輯</a></td>
+									<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.id}">刪除</a></td>
 								</tr>
 							</tbody>
 						</table>

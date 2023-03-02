@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.model.Brand;
+import main.model.Product;
 import main.repository.BrandRepository;
 
 @Service
@@ -24,7 +25,7 @@ public class BrandServiceImpl implements BrandService {
 
 	@Override
 	public Brand getById(long brandId) {
-		return brandRepository.getOne(brandId);
+		return brandRepository.findById(brandId).orElseThrow(null);
 	}
 
 	@Override
@@ -35,6 +36,11 @@ public class BrandServiceImpl implements BrandService {
 	@Override
 	public void delete(long brandId) {
 		brandRepository.deleteById(brandId);
+	}
+
+	@Override
+	public Brand getByName(String name) {
+		return brandRepository.findByBrandDescription(name);
 	}
 
 }

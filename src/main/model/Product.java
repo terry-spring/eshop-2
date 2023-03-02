@@ -1,7 +1,9 @@
 package main.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "product")
@@ -23,10 +30,6 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
 	private long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "brand_brand_id")
-	private Brand brand;
 
 	@Column(name = "product_name",length = 100)
     @NotBlank(message = "{product.name.notblank}")
@@ -44,9 +47,19 @@ public class Product {
 	@Column(name = "product_price")
 	private BigDecimal productPrice;
 
-//    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    @JoinColumn(name = "brand_id")
-//    private Brand brand;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "brand_id")// 物件"brand"加底限"_"加物件欄位 "id"(PS:id欄位名稱)
+	private Brand brand;
+    
+	@Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "create_date")
+	private Date createDate;
+    
+	@Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "update_date")
+	private Date updateDate;
 
 	public long getId() {
 		return id;
@@ -56,14 +69,6 @@ public class Product {
 		this.id = id;
 	}
 
-	public Brand getBrand() {
-		return brand;
-	}
-	
-	public void setBrand(Brand brand) {
-		this.brand = brand;
-	}
-	
 	public String getProductName() {
 		return productName;
 	}
@@ -94,6 +99,30 @@ public class Product {
 
 	public void setProductPrice(BigDecimal productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

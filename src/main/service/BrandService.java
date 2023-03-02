@@ -13,4 +13,6 @@ public interface BrandService {
 	public void saveOrUpdate(Brand brand);
 	
 	public void delete(long brandId);
+	
+	public Brand getByName(String name);
 }

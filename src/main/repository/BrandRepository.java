@@ -12,4 +12,5 @@ import main.model.Brand;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long>{
 
+	public Brand findByBrandDescription(String name);
 }
