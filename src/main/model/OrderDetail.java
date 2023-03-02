@@ -1,6 +1,7 @@
 package main.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -12,22 +13,19 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_detail_id")
     private long orderDetailId;
-    
-    /*
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-    */
 
     @Column(name = "product_id")
     private long productId;
-    
+
+    @Min(value = 0, message = "{detail.price}")
     @Column(name = "order_price")
     private BigDecimal orderPrice = new BigDecimal("0");
-    
-    @Column(name = "order_quantity")
-    private long orderQuantity;
 
+    @Min(value = 1, message = "{detail.quantity}")
+    @Column(name = "order_quantity")
+    private long orderQuantity = 1;
+
+    @Min(value = 0, message = "{detail.discount}")
     @Column(name = "discount")
     private BigDecimal discount = new BigDecimal("0");
 
@@ -70,15 +68,5 @@ public class OrderDetail {
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
-    
-    /*
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-    */
 
 }
