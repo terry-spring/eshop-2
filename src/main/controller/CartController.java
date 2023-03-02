@@ -18,40 +18,40 @@ public class CartController {
 	@Autowired
     private CartService cartService;
 	
-	@GetMapping("/show-cart")
-	public String showCart(Model model) {
+    @GetMapping("/show-cart")
+    public String showCart(Model model) {
         List<Cart> carts = cartService.getAll();
-		model.addAttribute("carts", carts);
-		return "cart";
-	}
-	
-	@GetMapping("/edit-cart/{cartId}")
+        model.addAttribute("carts", carts);
+        return "cart";
+    }
+
+    @GetMapping("/edit-cart/{cartId}")
     public String editCart(@PathVariable long cartId, Model model) {
         Cart cart = cartService.getById(cartId);
-		if(cart != null) {
-			model.addAttribute("cart", cart);
-			return "cart-form";
-		}
-		return "redirect:/show-cart";
-	}
-	
-	@GetMapping("/add-cart")
-	public String addCart(Model model) {
-		model.addAttribute("cart", new Cart());
-		return "cart-form";
-	}
-	
-	@PostMapping("/process-cart-form")
-	public String showCartDetail(Cart cart) {
-		return "cart-form";
-	}
-	
-	@GetMapping("/delete-cart/{cartId}")
-	public String deleteCart(@PathVariable long cartId) {
+        if (cart != null) {
+            model.addAttribute("cart", cart);
+            return "cart-form";
+        }
+        return "redirect:/show-cart";
+    }
+
+    @GetMapping("/add-cart")
+    public String addCart(Model model) {
+        model.addAttribute("cart", new Cart());
+        return "cart-form";
+    }
+
+    @PostMapping("/process-cart-form")
+    public String showCartDetail(Cart cart) {
+        return "cart-form";
+    }
+
+    @GetMapping("/delete-cart/{cartId}")
+    public String deleteCart(@PathVariable long cartId) {
         Cart cart = cartService.getById(cartId);
-		if (cart != null) {
+        if (cart != null) {
             cartService.delete(cartId);
-		}
-		return "redirect:/show-cart";
-	}
+        }
+        return "redirect:/show-cart";
+    }
 }

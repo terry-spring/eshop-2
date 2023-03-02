@@ -1,13 +1,19 @@
 package main.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,15 +38,14 @@ public class Order {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "order_date")
 	private Date orderDate;
-	
-	@Pattern(regexp = "^[a-zA-Z]{2}-[0-9]{2}[a-zA-Z]{1}$", message = "{order.cid.pattern}")
-	@Size(min = 5, max = 20, message = "{order.cid.size}")
+
+	@Size(max = 20)
 	@Column(name = "customer_id")
 	private String customerId;
 
 	@Column(name = "payment")
 	private Payment payment;
-	
+
 	@Min(value = 0, message = "{order.amount}")
 	@Column(name = "amount")
 	private BigDecimal amount = new BigDecimal("0");
@@ -82,7 +87,7 @@ public class Order {
 	}
 
 	public BigDecimal getAmount() {
-		return amount;
+		return amount.setScale(0, RoundingMode.DOWN);
 	}
 
 	public void setAmount(BigDecimal amount) {
