@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Brand;
 import main.model.Product;
-import main.service.BrandService;
 import main.service.ProductService;
 
 /**產品功能
@@ -85,8 +83,8 @@ public class ProductController {
      */
     @GetMapping("/delete-product/{productId}")
     public String deleteProduct(@PathVariable long productId) {
-        Product cart = productService.getById(productId);
-        if (cart != null) {
+        Product product = productService.getById(productId);
+        if (product != null) {
             productService.delete(productId);
         }
         return "redirect:/showProduct";

@@ -18,7 +18,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" href="#">產品維護</a></li>
+                        <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/showProduct}">產品維護</a></li>
                         <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
@@ -26,7 +26,7 @@
                                 <li><a class="dropdown-item" th:href="@{/show-order}">管理訂單</a></li>
                             </ul>
                         </li>
-                        <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" href="#">購物車</a></li>
+                        <li sec:authorize="!isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/show-cart}">購物車</a></li>
                         <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioCustomer" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">會員</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioCustomer">
