@@ -1,6 +1,7 @@
 package main.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -81,7 +82,7 @@ public class Order {
 	}
 
 	public BigDecimal getAmount() {
-		return amount;
+		return amount.setScale(0, RoundingMode.DOWN);
 	}
 
 	public void setAmount(BigDecimal amount) {

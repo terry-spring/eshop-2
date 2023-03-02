@@ -2,6 +2,7 @@ package main.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "order_detail")
@@ -47,7 +48,7 @@ public class OrderDetail {
     }
 
     public BigDecimal getOrderPrice() {
-        return orderPrice;
+        return orderPrice.setScale(0, RoundingMode.DOWN);
     }
 
     public void setOrderPrice(BigDecimal orderPrice) {
@@ -63,7 +64,7 @@ public class OrderDetail {
     }
 
     public BigDecimal getDiscount() {
-        return discount;
+        return discount.setScale(0, RoundingMode.DOWN);
     }
 
     public void setDiscount(BigDecimal discount) {
