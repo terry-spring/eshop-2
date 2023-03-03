@@ -36,35 +36,40 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
 						<h1>購物車</h1>
+						<h4 th:if="${!login_user.empty}" th:text="${login_user}"></h4>
 					</div>
 					
 					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!carts.empty}">
+						<table class="table table-hover" th:if="${!cartDetails.empty}">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">產品編號</th>
 									<th scope="col">產品名稱</th>
 									<th scope="col">產品數量</th>
+									<th scope="col">產品金額</th>
+									<th scope="col">產品折扣</th>
 									<th scope="col">刪除產品</th>
-									<th scope="col">詳細內容</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="cart : ${carts}">
+								<tr th:each="cartDetail : ${cartDetails}">
 									<td th:text="${orderStat.count}"></td>
-									<td th:text="${cart.id}"></td>
-									<td th:text="${cart.productName}"></td>
-									<td th:text="${cart.quantity}"></td>
+									<a type ="hidden" th:value ="${cartDetail.cart.id}"></a>
+									<a type ="hidden" th:value ="${cartDetail.id}"></a>
+									<td th:text="${cartDetail.productName}"></td>
+									<td th:text="${cartDetail.quantity}"></td>
+									<td th:text="${cartDetail.unitPrice}"></td>
+									<td th:text="${cartDetail.discount}"></td>
 									<!-- <td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.id}">編輯</a></td> -->
-									<!-- <td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.id}">刪除</a></td> -->
+									<td><a class="btn btn-danger" th:href="@{/delete-cartDetail/} + ${cartDetail.id}">刪除</a></td>
 									<!-- <td><a class="btn btn-success" th:href="@{/show-order-details/} + ${product.id}">顯示</a></td> -->
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-					<div class="row gx-5 justify-content-center" th:if="${carts.empty}">
+					<div class="row gx-5 justify-content-center" th:if="${cartDetails.empty}">
 						<h3>沒有任何訂單</h3>
 					</div>
 					

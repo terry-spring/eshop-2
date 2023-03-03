@@ -1,7 +1,9 @@
 package main.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "cart_detail")
@@ -38,7 +44,17 @@ public class CartDetail {
 	@NotBlank(message = "{cart.name.notblank}")
 	private BigDecimal discount;
 	
-	@ManyToOne
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "update_date")
+    private Date updateDate;
+
+    @ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_cart_id")
 	private Cart cart;
 
@@ -80,6 +96,22 @@ public class CartDetail {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public Cart getCart() {
