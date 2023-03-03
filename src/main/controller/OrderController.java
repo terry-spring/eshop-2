@@ -41,7 +41,6 @@ public class OrderController {
 	public String getOrders(Model model) {
 		List<Orders> orderss = orderService.getAll();
 		model.addAttribute("orderss", orderss);
-		System.out.println("123");
 		return "orders";
 	}
 
