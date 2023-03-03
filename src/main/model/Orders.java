@@ -95,7 +95,7 @@ public class Orders {
 		return orderDetails;
 	}
 
-	public void setOrderDetail(List<OrderDetail> orderDetails) {
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
 

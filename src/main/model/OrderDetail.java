@@ -42,7 +42,7 @@ public class OrderDetail {
         return orders;
     }
 
-    public void setOrder(Orders orders) {
+    public void setOrders(Orders orders) {
         this.orders = orders;
     }
 
