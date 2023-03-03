@@ -38,14 +38,14 @@ public class OrderController {
 	}
 	
 	@GetMapping("/show-order")
-	public String getOrders(Model model) {
+	public String getOrder(Model model) {
 		List<Orders> orderss = orderService.getAll();
 		model.addAttribute("orderss", orderss);
 		return "orders";
 	}
 
 	@GetMapping("/edit-order/{orderId}")
-	public String editOrders(@PathVariable long orderId, Model model) {
+	public String editOrder(@PathVariable long orderId, Model model) {
 		Orders orders = orderService.getById(orderId);
 		if(orders != null) {
 			model.addAttribute("orders", orders);
@@ -55,7 +55,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("/delete-order/{orderId}")
-	public String deleteOrders(@PathVariable long orderId) {
+	public String deleteOrder(@PathVariable long orderId) {
 		Orders orders = orderService.getById(orderId);
 		if(orders != null) {
 			orderService.delete(orderId);

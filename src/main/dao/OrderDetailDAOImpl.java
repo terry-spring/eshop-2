@@ -1,5 +1,6 @@
 package main.dao;
 
+import main.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,12 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     @Override
     public List<OrderDetail> getByOrderId(long orderId) {
         Session session = sessionFactory.getCurrentSession();
-        //return session.get(Order.class, orderId);
-        return session.createQuery("from order_detail, orders where orders.order_detail_id = order_detail.order_detail_id and order_id = :orderId", OrderDetail.class)
+        return session.createQuery("from OrderDetail where order_id = :orderId", OrderDetail.class)
                 .setParameter("orderId", orderId)
                 .list();
+        //return session.createQuery("from OrderDetail, Orders where Orders.order_detail_id = OrderDetail.order_detail_id and order_id = :orderId", OrderDetail.class)
+                //.setParameter("orderId", orderId)
+                //.list();
     }
 
     @Override

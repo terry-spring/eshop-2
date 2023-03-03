@@ -25,13 +25,13 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @PostMapping("/order-detail-process-form")
+    @PostMapping("/order-detail-process-form/{orderId}")
     public String processOrderDetailData(@Valid @ModelAttribute OrderDetail orderDetail, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "order-detail-from";
         }
         orderDetailService.saveOrUpdate(orderDetail);
-        return "redirect:/show-order";
+        return "redirect:/show-order-detail/{orderId}";
     }
 
     @GetMapping("/show-order-detail/{orderId}")
@@ -48,7 +48,7 @@ public class OrderDetailController {
             model.addAttribute("orderDetail", orderDetail);
             return "order-detail-from";
         }
-        return "redirect:/show-order";
+        return "redirect:/show-order-detail";
     }
 
 }
