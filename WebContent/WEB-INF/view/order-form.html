@@ -23,32 +23,12 @@
                         </div>
 
                         <div class="col-sm-8">
-							<h1>新增訂單</h1>
+							<h1>編輯訂單內容</h1>
 							
-							<form action="#" th:action="@{/order-process-form}" th:object="${order}" method="post">
+							<form action="#" th:action="@{/order-process-form}" th:object="${orders}" method="post">
 							
 								<div class="form-group">
 									<input type="hidden" class="form-control" th:field="*{orderId}">
-								</div>
-								
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.orderDetailId}">
-								</div>
-					
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.productId}">
-								</div>
-
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" th:field="*{orderDetail.orderPrice}">
-                                </div>
-					
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.orderQuantity}">
-								</div>
-								
-								<div class="form-group">
-									<input type="hidden" class="form-control" th:field="*{orderDetail.discount}">
 								</div>
 								
 								<div class="form-group">
@@ -66,7 +46,7 @@
                                 <div class="form-group">
                                     <label>付款方式</label>
                                     <select name="payment" class="form-control">
-                                        <option th:each="payment : ${T(main.model.Order.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
+                                        <option th:each="payment : ${T(main.model.Orders.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
                                     </select>
                                 </div>
 								
@@ -74,6 +54,10 @@
 									<label>總額</label>
 									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
 									<input type="number" class="form-control" th:field="*{amount}">
+								</div>
+
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderDetail.orderDetailId}">
 								</div>
 								
 								<div class="row gx-5 justify-content-center">

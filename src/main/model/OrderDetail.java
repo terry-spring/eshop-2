@@ -11,6 +11,10 @@ import java.util.Date;
 @Table(name = "order_detail")
 public class OrderDetail {
 
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    private Orders orders;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_detail_id")
@@ -33,6 +37,14 @@ public class OrderDetail {
 
     @Column(name = "update_date")
     private Date updateDate = Date.from(Instant.now());
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrder(Orders orders) {
+        this.orders = orders;
+    }
 
     public long getOrderDetailId() {
         return orderDetailId;

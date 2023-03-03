@@ -18,32 +18,41 @@
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
-                    <div class="row">
-                      <h1 th:text="${order.orderId} + ' details'"></h1>
+                    <div class="row gx-5 justify-content-center">
+                        <h1>訂單詳細內容</h1>
                     </div>
 
-                    <div class="row">
-                      <label>產品編號</label>
-                      <input type="text" class="form-control" th:field="${order.orderDetail.productId}" readonly>
+                    <div class="row gx-5 justify-content-center">
+                        <table class="table table-hover" th:if="${!orderDetails.empty}">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">產品編號</th>
+                                <th scope="col">單價</th>
+                                <th scope="col">購買數量</th>
+                                <th scope="col">折扣</th>
+                                <th scope="col">編輯</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="orderDetail : ${orderDetails}">
+                                <td th:text="${orderDetailStat.count}"></td>
+                                <td th:text="${orderDetail.productId}"></td>
+                                <td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(orderDetail.orderPrice), '¤', '$'), '.00', '')}"></td>
+                                <td th:text="${orderDetail.orderQuantity}"></td>
+                                <td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(orderDetail.discount), '¤', '$'), '.00', '')}"></td>
+                                <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${orderDetail.orderDetailId}">編輯</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="row">
-                      <label>單價</label>
-                      <input type="text" class="form-control" th:field="${order.orderDetail.orderPrice}" readonly>
+                    <div class="row gx-5 justify-content-center" th:if="${orderDetails.empty}">
+                        <h3>沒有任何訂單詳細內容</h3>
                     </div>
 
-                    <div class="row">
-                      <label>購買數量</label>
-                      <input type="text" class="form-control" th:field="${order.orderDetail.orderQuantity}" readonly>
-                    </div>
-
-                    <div class="row">
-                      <label>折扣</label>
-                      <input type="text" class="form-control" th:field="${order.orderDetail.discount}" readonly>
-                    </div>
-
-                    <div class="row">
-                      <a th:href="@{/show-order}" class="btn btn-warning">返回</a>
+                    <div class="row gx-5 justify-content-center">
+                        <a th:href="@{/show-order}" class="btn btn-warning">返回</a>
                     </div>
                 </div>
             </section>

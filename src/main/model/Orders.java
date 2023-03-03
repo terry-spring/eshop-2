@@ -10,17 +10,19 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
-@Entity(name = "orders")
-public class Order {
+@Entity
+@Table(name = "orders")
+public class Orders {
 
 	public enum Payment {
 		money, card;
 	}
 
-	public Order() {
-		setOrderDetail(new OrderDetail());
-	}
+	//public Order() {
+		//setOrderDetail(new OrderDetail());
+	//}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +45,8 @@ public class Order {
 	@Column(name = "amount")
 	private BigDecimal amount = new BigDecimal("0");
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_detail_id")
-	private OrderDetail orderDetail;
+	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderDetail> orderDetails;
 
 	@Column(name = "update_date")
 	private Date updateDate = Date.from(Instant.now());
@@ -90,12 +91,12 @@ public class Order {
 		this.amount = amount;
 	}
 
-	public OrderDetail getOrderDetail() {
-		return orderDetail;
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setOrderDetail(OrderDetail orderDetail) {
-		this.orderDetail = orderDetail;
+	public void setOrderDetail(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 
 	public Date getUpdateDate() {

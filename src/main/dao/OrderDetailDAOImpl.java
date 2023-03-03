@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import main.model.OrderDetail;
 
+import java.util.List;
+
 @Repository
 public class OrderDetailDAOImpl implements OrderDetailDAO {
 
@@ -17,6 +19,15 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     public OrderDetail getById(long orderDetailId) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(OrderDetail.class, orderDetailId);
+    }
+
+    @Override
+    public List<OrderDetail> getByOrderId(long orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        //return session.get(Order.class, orderId);
+        return session.createQuery("from order_detail, orders where orders.order_detail_id = order_detail.order_detail_id and order_id = :orderId", OrderDetail.class)
+                .setParameter("orderId", orderId)
+                .list();
     }
 
     @Override
