@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity(name = "orders")
@@ -45,6 +46,9 @@ public class Order {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_detail_id")
 	private OrderDetail orderDetail;
+
+	@Column(name = "update_date")
+	private Date updateDate = Date.from(Instant.now());
 
 	public long getOrderId() {
 		return orderId;
@@ -92,6 +96,14 @@ public class Order {
 
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 	
 }
