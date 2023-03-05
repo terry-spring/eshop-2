@@ -9,6 +9,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String getHome() {
+//		StringBuilder sBuilder = new StringBuilder("")
+//				.append("a");
 		return "index";
 	}
 

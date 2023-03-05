@@ -23,7 +23,7 @@
 					</div>
 					
 					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!orderss.empty}">
+						<table class="table table-hover" th:if="${!orders.empty}">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
@@ -37,21 +37,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="orders : ${orderss}">
-									<td th:text="${ordersStat.count}"></td>
-									<td th:text="${#dates.format(orders.orderDate, 'yyyy-MM-dd')}"></td>
-									<td th:text="${orders.customerId}"></td>
-									<td th:text="${orders.payment}"></td>
-									<td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(orders.amount), '¤', '$'), '.00', '')}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${orders.orderId}">編輯</a></td>
-									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${orders.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-detail/} + ${orders.orderId}">顯示</a></td>
+								<tr th:each="order : ${orders}">
+									<td th:text="${orderStat.count}"></td>
+									<td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
+									<td th:text="${order.customerId}"></td>
+									<td th:text="${order.payment}"></td>
+									<td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(order.amount), '¤', '$'), '.00', '')}"></td>
+                                    <td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
+									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
+									<td><a class="btn btn-success" th:href="@{/show-order-detail/} + ${order.orderId}">顯示</a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-					<div class="row gx-5 justify-content-center" th:if="${orderss.empty}">
+					<div class="row gx-5 justify-content-center" th:if="${orders.empty}">
 						<h3>沒有任何訂單</h3>
 					</div>
 					

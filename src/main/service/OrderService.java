@@ -2,15 +2,15 @@ package main.service;
 
 import java.util.List;
 
-import main.model.Orders;
+import main.model.Order;
 
 public interface OrderService {
 	
-	public List<Orders> getAll();
+    public List<Order> getAll();
 	
-	public Orders getById(long orderId);
+    public Order getById(long orderId);
 	
-	public void saveOrUpdate(Orders orders);
+    public void saveOrUpdate(Order order);
 	
 	public void delete(long orderId);
 

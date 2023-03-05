@@ -69,6 +69,16 @@
 	    <version>8.0.31</version>
 	</dependency>
 	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-commons</artifactId>
+		<version>2.2.7.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>2.2.7.RELEASE</version>
+	</dependency>
+	<dependency>
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-web</artifactId>
 		<version>5.3.2.RELEASE</version>
@@ -84,4 +94,5 @@
 		<version>3.0.4.RELEASE</version>
 	</dependency>
   </dependencies>
+  
 </project>

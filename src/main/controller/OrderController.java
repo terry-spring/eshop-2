@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Orders;
+import main.model.Order;
 import main.service.OrderService;
 
 @Controller
@@ -24,31 +24,31 @@ public class OrderController {
 
 	@GetMapping("/add-order")
 	public String showForm(Model model) {
-		model.addAttribute("orders", new Orders());
+        model.addAttribute("order", new Order());
 		return "order-form";
 	}
 	
 	@PostMapping("/order-process-form")
-	public String showOrderData(@Valid @ModelAttribute Orders orders, BindingResult bindingResult) {
+    public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "order-form";
 		}
-		orderService.saveOrUpdate(orders);
+        orderService.saveOrUpdate(order);
 		return "redirect:show-order";
 	}
 
 	@GetMapping("/show-order")
 	public String getOrder(Model model) {
-		List<Orders> orderss = orderService.getAll();
-		model.addAttribute("orderss", orderss);
-		return "orders";
+        List<Order> orders = orderService.getAll();
+        model.addAttribute("orders", orders);
+        return "order";
 	}
 
 	@GetMapping("/edit-order/{orderId}")
 	public String editOrder(@PathVariable long orderId, Model model) {
-		Orders orders = orderService.getById(orderId);
-		if(orders != null) {
-			model.addAttribute("orders", orders);
+        Order order = orderService.getById(orderId);
+        if (order != null) {
+            model.addAttribute("order", order);
 			return "order-form";
 		}
 		return "redirect:/show-order";
@@ -56,8 +56,8 @@ public class OrderController {
 	
 	@GetMapping("/delete-order/{orderId}")
 	public String deleteOrder(@PathVariable long orderId) {
-		Orders orders = orderService.getById(orderId);
-		if(orders != null) {
+        Order order = orderService.getById(orderId);
+        if (order != null) {
 			orderService.delete(orderId);
 		}
 		return "redirect:/show-order";

@@ -1,11 +1,19 @@
 package main.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "order_detail")
@@ -13,7 +21,7 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name="order_id")
-    private Orders orders;
+    private Order order;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,12 +46,12 @@ public class OrderDetail {
     @Column(name = "update_date")
     private Date updateDate = Date.from(Instant.now());
 
-    public Orders getOrders() {
-        return orders;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public long getOrderDetailId() {
