@@ -1,12 +1,13 @@
 package main.dao;
 
-import main.model.Order;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import main.model.Order;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -17,7 +18,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public List<Order> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Order o", Order.class).list();
+        return session.createQuery("from orders o", Order.class).list();
 	}
 
 	@Override
