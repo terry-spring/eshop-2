@@ -164,5 +164,4 @@ public class Customer {
     public void setPostalcode(Postalcode postalcode) {
         this.postalcode = postalcode;
     }
-	
 }

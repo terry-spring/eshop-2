@@ -94,5 +94,4 @@ public class User {
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
-
 }
