@@ -4,17 +4,35 @@ import java.math.BigDecimal;
 
 public class CartForm {
 
-    private long productId;
+    private long productId;//
 
     private String productName;
 
     private String productImage;
 
+    private BigDecimal discount;
+
     private String productDescription;
 
-    private BigDecimal productPrice;
+    private BigDecimal productPrice;//
 
-    private int quantity;
+    private int quantity;//
+
+    public CartForm() {
+        super();
+    }
+
+    public CartForm(long productId, String productName, String productImage, BigDecimal discount,
+            String productDescription, BigDecimal productPrice, int quantity) {
+        super();
+        this.productId = productId;
+        this.productName = productName;
+        this.productImage = productImage;
+        this.discount = discount;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.quantity = quantity;
+    }
 
     public long getProductId() {
         return productId;
@@ -38,6 +56,14 @@ public class CartForm {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     public String getProductDescription() {
