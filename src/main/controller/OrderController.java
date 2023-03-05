@@ -34,7 +34,7 @@ public class OrderController {
 			return "order-form";
 		}
         orderService.saveOrUpdate(order);
-		return "redirect:show-order";
+        return "redirect:/show-order";
 	}
 
 	@GetMapping("/show-order")
