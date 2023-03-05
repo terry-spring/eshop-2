@@ -30,11 +30,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void saveOrUpdate(Product product) {
+        Date dateTimeDate = new Date();
 		if (product.getId()!= 0) {
-			product.setUpdateDate(new Date());
+            product.setUpdateDate(dateTimeDate);
 		}else {
-			product.setCreateDate(new Date());
-			product.getBrand().setCreateDate(new Date());
+            product.setCreateDate(dateTimeDate);
+            product.getBrand().setCreateDate(dateTimeDate);
 		}
 		productRepository.save(product);
 	}

@@ -1,10 +1,9 @@
 package main.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,10 +33,10 @@ public class ProductController {
 	 * @return
 	 */
 	@GetMapping("/showProduct")
-	public String getProduct(@AuthenticationPrincipal Authentication authentication,Model model) {
+    public String getProduct(Principal principal, Model model) {
 		List<Product> products = productService.getAll();
 		model.addAttribute("products", products);
-		model.addAttribute("login_user", authentication.getName());
+        model.addAttribute("login_user", principal.getName());
 		return "product";
 	}
 	

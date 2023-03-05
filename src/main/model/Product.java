@@ -20,7 +20,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "product")
@@ -40,7 +39,7 @@ public class Product {
 	private String productImage;
 	
 	@Column(name = "product_description")
-	private String productDescription;
+    private String productDescription;
 
 	@NotNull(message = "{product.price.notnull}")
 	@DecimalMin(value="0", message = "{product.price.min}")
