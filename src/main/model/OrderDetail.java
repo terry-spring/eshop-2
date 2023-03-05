@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,8 @@ import javax.validation.constraints.Min;
 @Table(name = "order_detail")
 public class OrderDetail {
 
-    @ManyToOne
-    @JoinColumn(name="order_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_order_id")
     private Order order;
 
     @Id

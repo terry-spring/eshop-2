@@ -38,11 +38,12 @@ public class OrderController {
 	}
 
 	@GetMapping("/show-order")
-	public String getOrder(Model model) {
-        List<Order> orders = orderService.getAll();
-        model.addAttribute("orders", orders);
+	public String getOrders(Model model) {
+		List<Order> orders = orderService.getAll();
+		model.addAttribute("orders", orders);
         return "order";
 	}
+
 
 	@GetMapping("/edit-order/{orderId}")
 	public String editOrder(@PathVariable long orderId, Model model) {
