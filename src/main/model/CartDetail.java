@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -25,23 +25,23 @@ public class CartDetail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@NotBlank(message = "{cart.productId.notblank}")
+    // @NotBlank(message = "{cart.productId.notblank}")
 	@Column(name = "cart_detail_id")
 	private long cartDetailId;
 	
-	@NotBlank(message = "{cart.productId.notblank}")
+    // @NotBlank(message = "{cart.productId.notblank}")
 	@Column(name = "product_id")
 	private long productId;
 	
-	@NotBlank(message = "{cart.quantity.notblank}")
+    // @NotBlank(message = "{cart.quantity.notblank}")
 	@Column(name = "quantity")
-	private long quantity;
+    private int quantity;
 	
-	@NotBlank(message = "{cart.name.notblank}")
+    // @NotBlank(message = "{cart.name.notblank}")
 	@Column(name = "unit_price")
 	private BigDecimal unitPrice;
 	
-	@NotBlank(message = "{cart.name.notblank}")
+    // @NotBlank(message = "{cart.name.notblank}")
 	private BigDecimal discount;
 	
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,7 +54,7 @@ public class CartDetail {
     @Column(name = "update_date")
     private Date updateDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_cart_id")
 	private Cart cart;
 
@@ -74,11 +74,11 @@ public class CartDetail {
         this.productId = productId;
     }
 
-    public long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

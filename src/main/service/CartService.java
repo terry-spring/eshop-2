@@ -2,10 +2,6 @@ package main.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import main.model.Cart;
 
 public interface CartService {
@@ -17,4 +13,8 @@ public interface CartService {
 	public void saveOrUpdate(Cart cart);
 	
 	public void delete(long cartId);
+
+    public Cart getByCustomerId(long customerId);
+
+    public void addProduct2cart(long productId, int quantity);
 }

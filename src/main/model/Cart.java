@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "cart")
@@ -35,6 +32,9 @@ public class Cart {
 	@Column(name = "customer_id")
 	private String customerId;
 */	
+
+    @Column(name = "customer_id")
+    private long customerId;
 
 	@Min(value = 0, message = "{cart.amount}")
 	@Column(name = "amount")
@@ -53,44 +53,52 @@ public class Cart {
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CartDetail> cartDetails;
 
-	public long getCartId() {
-		return cartId;
-	}
+    public long getCartId() {
+        return cartId;
+    }
 
-	public void setCartId(long cartId) {
-		this.cartId = cartId;
-	}
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
+    }
 
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    public long getCustomerId() {
+        return customerId;
+    }
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public List<CartDetail> getCartDetails() {
-		return cartDetails;
-	}
+    public Date getUpdateDate() {
+        return updateDate;
+    }
 
-	public void setCartDetails(List<CartDetail> cartDetails) {
-		this.cartDetails = cartDetails;
-	}
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public List<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(List<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
 
 }
