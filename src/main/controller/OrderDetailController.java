@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Order;
 import main.model.OrderDetail;
 import main.service.OrderDetailService;
 import main.service.OrderService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class OrderDetailController {
@@ -25,34 +25,30 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @PostMapping("/order-detail-process-form")
+    @PostMapping("/order-detail-process-form/{orderId}")
     public String processOrderDetailData(@Valid @ModelAttribute OrderDetail orderDetail, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "order-detail-from";
         }
         orderDetailService.saveOrUpdate(orderDetail);
-        return "redirect:/show-order";
+        return "redirect:/show-order-detail/{orderId}";
     }
 
     @GetMapping("/show-order-detail/{orderId}")
     public String showOrderDetail(@PathVariable long orderId, Model model) {
-        Order order = orderService.getById(orderId);
-        if(order != null) {
-            model.addAttribute("order", order);
-            return "order-detail";
-        }
-        return "redirect:/show-order";
+        List<OrderDetail> orderDetails = orderDetailService.getByOrderId(orderId);
+        model.addAttribute("orderDetails", orderDetails);
+        return "order-detail";
     }
 
-    @GetMapping("/edit-order-detail/{orderId}")
-    public String editOrderDetail(@PathVariable long orderId, Model model) {
-        Order order = orderService.getById(orderId);
-        if(order != null) {
-            model.addAttribute("orderDetail", order.getOrderDetail());
+    @GetMapping("/edit-order-detail/{orderDetailId}")
+    public String editOrderDetail(@PathVariable long orderDetailId, Model model) {
+        OrderDetail orderDetail = orderDetailService.getById(orderDetailId);
+        if(orderDetail != null) {
+            model.addAttribute("orderDetail", orderDetail);
             return "order-detail-from";
         }
-        System.out.println("test");
-        return "redirect:/show-order";
+        return "redirect:/show-order-detail";
     }
 
 }

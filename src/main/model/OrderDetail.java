@@ -4,10 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail {
+
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    private Orders orders;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +34,17 @@ public class OrderDetail {
     @Min(value = 0, message = "{detail.discount}")
     @Column(name = "discount")
     private BigDecimal discount = new BigDecimal("0");
+
+    @Column(name = "update_date")
+    private Date updateDate = Date.from(Instant.now());
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
 
     public long getOrderDetailId() {
         return orderDetailId;
@@ -67,6 +84,14 @@ public class OrderDetail {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
 }

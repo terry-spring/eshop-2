@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dao.OrderDAO;
-import main.model.Order;
+import main.model.Orders;
 
 @Service
 @Transactional
@@ -18,18 +18,18 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDAO orderDAO;
 	
 	@Override
-	public List<Order> getAll() {
+	public List<Orders> getAll() {
 		return orderDAO.getAll();
 	}
 
 	@Override
-	public Order getById(long orderId) {
+	public Orders getById(long orderId) {
 		return orderDAO.getById(orderId);
 	}
 	
 	@Override
-	public void saveOrUpdate(Order order) {
-		orderDAO.saveOrUpdate(order);
+	public void saveOrUpdate(Orders orders) {
+		orderDAO.saveOrUpdate(orders);
 	}
 
 	@Override
