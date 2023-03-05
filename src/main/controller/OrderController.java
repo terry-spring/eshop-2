@@ -41,7 +41,7 @@ public class OrderController {
 	public String getOrders(Model model) {
 		List<Order> orders = orderService.getAll();
 		model.addAttribute("orders", orders);
-		return "orders";
+        return "order";
 	}
 
 	@GetMapping("/delete-order/{orderId}")
