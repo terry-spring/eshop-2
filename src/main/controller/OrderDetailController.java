@@ -11,16 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.model.OrderDetail;
 import main.service.OrderDetailService;
-import main.service.OrderService;
-
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class OrderDetailController {
-
-    @Autowired
-    private OrderService orderService;
 
     @Autowired
     private OrderDetailService orderDetailService;

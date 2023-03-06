@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.model.Cart;
 import main.model.CartDetail;
-import main.model.CartForm;
 import main.model.Order;
 import main.model.OrderDetail;
 import main.service.CartService;
@@ -30,13 +29,15 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
 	private OrderDetailService orderDetailService;
 
 	@Autowired
 	private CartService cartService;
 
 	@GetMapping("/add-order/{cartId}")
-	public String showCartForm(@PathVariable long cartId, Model model) {
+	public String showCartForm(@PathVariable long cartId) {
 		Cart cart = cartService.getById(cartId);
 		if(cart != null) {
 			Order order = new Order();
@@ -65,7 +66,7 @@ public class OrderController {
 			orderService.saveOrUpdate(order);
 			cartService.delete(cartId);
 		}
-		return "redirect:show-order";
+		return "redirect:/show-order";
 	}
 	
 	/*
@@ -82,7 +83,7 @@ public class OrderController {
 			return "order-form";
 		}
 		orderService.saveOrUpdate(order);
-		return "redirect:show-order";
+		return "redirect:/show-order";
 	}
 	
 	@GetMapping("/show-order")

@@ -1,6 +1,5 @@
 package main.dao;
 
-import main.model.Order;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
