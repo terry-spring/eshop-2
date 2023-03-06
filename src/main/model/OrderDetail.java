@@ -21,7 +21,7 @@ import javax.validation.constraints.Min;
 public class OrderDetail {
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Id

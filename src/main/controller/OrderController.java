@@ -22,6 +22,7 @@ import main.model.CartForm;
 import main.model.Order;
 import main.model.OrderDetail;
 import main.service.CartService;
+import main.service.OrderDetailService;
 import main.service.OrderService;
 
 @Controller
@@ -29,14 +30,14 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
-	// private OrderDetailService orderDetailService;
-	@Autowired
-	 private CartService cartService;
+	private OrderDetailService orderDetailService;
 
-	
-	@PostMapping("/add-order")
-	public String showCartForm(@ModelAttribute CartForm cartForm, Model model) {
-		Cart cart = cartService.getById(id);
+	@Autowired
+	private CartService cartService;
+
+	@GetMapping("/add-order/{cartId}")
+	public String showCartForm(@PathVariable long cartId, Model model) {
+		Cart cart = cartService.getById(cartId);
 		if(cart != null) {
 			Order order = new Order();
 			List<OrderDetail> orderDetails = new ArrayList<>();
@@ -44,30 +45,36 @@ public class OrderController {
 			order.setOrderId(cart.getCartId());
 			order.setOrderDate(new Date());
 			order.setCustomerId(cart.getCustomerId());
-			for(CartDetail cartDetail: cart.getCartDetail()) {
+			order.setPayment(Order.Payment.money);
+			for(CartDetail cartDetail: cart.getCartDetails()) {
 				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setOrder(order);
 				orderDetail.setOrderDetailId(cartDetail.getCartDetailId());
 				orderDetail.setProductId(cartDetail.getProductId());
 				orderDetail.setOrderPrice(cartDetail.getUnitPrice());
 				orderDetail.setOrderQuantity(cartDetail.getQuantity());
 				orderDetail.setDiscount(cartDetail.getDiscount());
-				orderDetails.add(orderDetail);
+				orderDetail.setUpdateDate(new Date());
+				orderDetailService.saveOrUpdate(orderDetail);
 				total = total.add(cartDetail.getUnitPrice().multiply(BigDecimal.valueOf(cartDetail.getQuantity())));
+				orderDetails.add(orderDetail);
 			}
 			order.setAmount(total);
 			order.setOrderDetails(orderDetails);
+			order.setUpdateDate(new Date());
 			orderService.saveOrUpdate(order);
-			cartService.delete(id);
+			cartService.delete(cartId);
 		}
-		return "checkout";
+		return "redirect:show-order";
 	}
 	
-
+	/*
 	@GetMapping("/add-order")
 	public String showForm(Model model) {
 		model.addAttribute("order", new Order());
 		return "order-form";
 	}
+	*/
 	
 	@PostMapping("/order-process-form")
 	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {

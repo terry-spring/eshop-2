@@ -3,8 +3,20 @@ package main.model;
 import java.math.BigDecimal;
 
 public class CartForm {
+	
+	/* Temp Start */
+	private long cartId;
 
-    private long productId;
+    public long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+	/* Temp End */
+
+	private long productId;
 
     private String productName;
 

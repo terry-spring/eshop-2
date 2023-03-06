@@ -42,9 +42,8 @@ public class Order {
     @Column(name = "order_date")
     private Date orderDate;
 
-    @Size(max = 20)
     @Column(name = "customer_id")
-    private String customerId;
+    private long customerId;
 
     @Column(name = "payment")
     private Payment payment;
@@ -75,11 +74,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
