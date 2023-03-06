@@ -45,5 +45,14 @@ public class OrderDetailController {
         }
         return "redirect:/show-order-detail";
     }
+    
+    @GetMapping("/delete-order-detail/{orderDetailId}")
+	public String deleteOrderDetail(@PathVariable long orderDetailId) {
+    	OrderDetail orderDetail = orderDetailService.getById(orderDetailId);
+		if(orderDetail != null) {
+			orderDetailService.delete(orderDetailId);
+		}
+		return "redirect:/show-order-detail";
+	}
 
 }

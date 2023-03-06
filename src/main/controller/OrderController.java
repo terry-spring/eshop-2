@@ -69,13 +69,11 @@ public class OrderController {
 		return "redirect:/show-order";
 	}
 	
-	/*
-	@GetMapping("/add-order")
+	@GetMapping("/create-order")
 	public String showForm(Model model) {
 		model.addAttribute("order", new Order());
 		return "order-form";
 	}
-	*/
 	
 	@PostMapping("/order-process-form")
 	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
@@ -111,6 +109,5 @@ public class OrderController {
 		}
 		return "redirect:/show-order";
 	}
-
 
 }

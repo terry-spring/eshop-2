@@ -42,6 +42,7 @@
                                 <td th:text="${orderDetail.orderQuantity}"></td>
                                 <td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(orderDetail.discount), '¤', '$'), '.00', '')}"></td>
                                 <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${orderDetail.orderDetailId}">編輯</a></td>
+                                <td><a class="btn btn-danger" th:href="@{/delete-order-detail/} + ${orderDetail.orderDetailId}">刪除</a></td>
                             </tr>
                             </tbody>
                         </table>
