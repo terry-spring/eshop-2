@@ -27,9 +27,6 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
         return session.createQuery("from OrderDetail where order_id = :orderId", OrderDetail.class)
                 .setParameter("orderId", orderId)
                 .list();
-        //return session.createQuery("from OrderDetail, Orders where Orders.order_detail_id = OrderDetail.order_detail_id and order_id = :orderId", OrderDetail.class)
-                //.setParameter("orderId", orderId)
-                //.list();
     }
 
     @Override
