@@ -23,7 +23,7 @@ public class OrderDetailController {
     @PostMapping("/order-detail-process-form/{orderId}")
     public String processOrderDetailData(@Valid @ModelAttribute OrderDetail orderDetail, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return "order-detail-from";
+            return "order-detail-form";
         }
         orderDetailService.saveOrUpdate(orderDetail);
         return "redirect:/show-order-detail/{orderId}";
@@ -41,7 +41,7 @@ public class OrderDetailController {
         OrderDetail orderDetail = orderDetailService.getById(orderDetailId);
         if(orderDetail != null) {
             model.addAttribute("orderDetail", orderDetail);
-            return "order-detail-from";
+            return "order-detail-form";
         }
         return "redirect:/show-order-detail";
     }
