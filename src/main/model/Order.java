@@ -26,10 +26,6 @@ public class Order {
         money, card;
     }
 
-    // public Order() {
-    // setOrderDetail(new OrderDetail());
-    // }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
