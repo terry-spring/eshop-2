@@ -42,7 +42,6 @@
 					<div>
 						<form action="#" th:action="@{/add-order}" th:object="${cartForm}" method="post">
 						
-						
 							<div class="row gx-5 justify-content-center">
 								<table class="table table-hover" th:if="${!cartDetails.empty}">
 									<thead>
@@ -91,9 +90,6 @@
 				                <a th:href="@{/}" class="btn btn-outline-primary">返回</a>
 				            </div>
 				        </form>
-			        </div>
-			        
-			        
 			        </div>
                     <!-- Call to action-->
                     <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
