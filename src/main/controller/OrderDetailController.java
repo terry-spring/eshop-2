@@ -32,6 +32,9 @@ public class OrderDetailController {
     @GetMapping("/show-order-detail/{orderId}")
     public String showOrderDetail(@PathVariable long orderId, Model model) {
         List<OrderDetail> orderDetails = orderDetailService.getByOrderId(orderId);
+        if(orderDetails.isEmpty()) {
+            return "redirect:/delete-order/{orderId}";
+        }
         model.addAttribute("orderDetails", orderDetails);
         return "order-detail";
     }
@@ -46,13 +49,13 @@ public class OrderDetailController {
         return "redirect:/show-order-detail";
     }
     
-    @GetMapping("/delete-order-detail/{orderDetailId}")
+    @GetMapping("/delete-order-detail/{orderDetailId}/{orderId}")
 	public String deleteOrderDetail(@PathVariable long orderDetailId) {
     	OrderDetail orderDetail = orderDetailService.getById(orderDetailId);
 		if(orderDetail != null) {
 			orderDetailService.delete(orderDetailId);
 		}
-		return "redirect:/show-order-detail";
+		return "redirect:/show-order-detail/{orderId}";
 	}
 
 }

@@ -20,7 +20,7 @@ import javax.validation.constraints.Min;
 @Table(name = "order_detail")
 public class OrderDetail {
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 
