@@ -1,9 +1,17 @@
 html {
+	background-image: url("../img/bg1.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
   position: relative;
   min-height: 100%;
   padding-bottom: 75px;
 }
 body {
+	background-image: url("../img/bg1.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
   margin-bottom: 75px;
 }
 footer {

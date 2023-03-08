@@ -3,8 +3,9 @@
 	  xmlns:th="http://www.thymeleaf.org">
 	<head>
         <meta charset="utf-8" />
-        <title>eshop</title>
+        <title>電 子 商 城</title>
         <link rel="icon" type="image/x-icon" th:href="@{/resources/ico/favicon.ico}">
+        <link rel="stylesheet" type="text/css" th:href="@{/resources/css/styles.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
         <script th:src="@{/resources/js/jquery-3.6.3.min.js}"></script>
         <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
@@ -12,30 +13,12 @@
 	<body class="d-flex flex-column h-100">
 		<main class="flex-shrink-0">
             <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" th:href="@{/demo}">eshop</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" th:href="@{/demo}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">Log in</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item" th:href="@{/show-offer}">Order</a></li>
-                                    <li><a class="dropdown-item" href="portfolio-item.html">Log out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <div th:insert="navbar :: navbar"></div>
             <!-- Blog preview section-->
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
-						<h1>所有產品 </h1>
+						<h1>產品總覽 </h1>
 						<h4 th:if="${!login_user.empty}" th:text="${login_user}"></h4>
 					</div>
 					
@@ -63,7 +46,8 @@
 									<td th:text="${product.productName}"></td>
 									<td th:text="${product.productImage}"></td>
 									<td th:text="${product.productDescription}"></td>
-									<td th:text="${product.productPrice}"></td>
+									<td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(product.productPrice), '¤', '$'), '.00', '')}"></td>
+<!-- 									<td th:text="${product.productPrice}"></td> -->
 									<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
 									<td><a class="btn btn-outline-success" type="submit" th:href="@{/show-cartform/} + ${product.id}">加入購物車</a></td>
 									<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.id}">編輯</a></td>
@@ -83,39 +67,11 @@
 						<a th:href="@{/add-product}" class="btn btn-info">新增產品</a>
 						<a th:href="@{/}" class="btn btn-warning">返回</a>
 					</div>
-                    <!-- Call to action-->
-                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                            <div class="mb-4 mb-xl-0">
-                                <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
-                                <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
-                            </div>
-                            <div class="ms-xl-4">
-                                <div class="input-group mb-2">
-                                    <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                                    <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
-                                </div>
-                                <div class="small text-white-50">We care about privacy, and will never share your data.</div>
-                            </div>
-                        </div>
-                    </aside>
+                    <!-- Call to action-->                 
                 </div>
             </section>
         </main>
         <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; eshop 2022</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <div th:insert="footer :: footer"></div>
 	</body>
 </html>

@@ -5,7 +5,12 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+/**
+ * 設定檔
+ * @author sam
+ *
+ */
+public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -21,7 +26,11 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
 	}
-
+	
+	
+	/**
+	 *utf-8 chinese
+	 */
 	@Override
 	protected Filter[] getServletFilters() {
 		final CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
