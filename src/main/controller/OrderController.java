@@ -56,7 +56,6 @@ public class OrderController {
 				orderDetail.setDiscount(cartDetail.getDiscount());
 				orderDetail.setUpdateDate(new Date());
 				orderDetailService.saveOrUpdate(orderDetail);
-				System.out.println("Hello I am a Pizza");
 				total = total.add(cartDetail.getUnitPrice().multiply(BigDecimal.valueOf(cartDetail.getQuantity())));
 				orderDetails.add(orderDetail);
 			}
