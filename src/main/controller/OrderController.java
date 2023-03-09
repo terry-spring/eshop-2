@@ -43,27 +43,29 @@ public class OrderController {
 			Order order = new Order();
 			List<OrderDetail> orderDetails = new ArrayList<>();
 			BigDecimal total = BigDecimal.valueOf(0);
-			order.setOrderId(cart.getCartId());
 			order.setOrderDate(new Date());
 			order.setCustomerId(cart.getCustomerId());
 			order.setPayment(Order.Payment.money);
+			orderService.saveOrUpdate(order);
 			for(CartDetail cartDetail: cart.getCartDetails()) {
 				OrderDetail orderDetail = new OrderDetail();
 				orderDetail.setOrder(order);
-				orderDetail.setOrderDetailId(cartDetail.getCartDetailId());
 				orderDetail.setProductId(cartDetail.getProductId());
 				orderDetail.setOrderPrice(cartDetail.getUnitPrice());
 				orderDetail.setOrderQuantity(cartDetail.getQuantity());
 				orderDetail.setDiscount(cartDetail.getDiscount());
 				orderDetail.setUpdateDate(new Date());
 				orderDetailService.saveOrUpdate(orderDetail);
+				System.out.println("Hello I am a Pizza");
 				total = total.add(cartDetail.getUnitPrice().multiply(BigDecimal.valueOf(cartDetail.getQuantity())));
 				orderDetails.add(orderDetail);
 			}
-			order.setAmount(total);
-			order.setOrderDetails(orderDetails);
-			order.setUpdateDate(new Date());
-			orderService.saveOrUpdate(order);
+			long nowOrderId = order.getOrderId();
+			Order alterOrder = orderService.getById(nowOrderId);
+			alterOrder.setAmount(total);
+			alterOrder.setOrderDetails(orderDetails);
+			alterOrder.setUpdateDate(new Date());
+			orderService.saveOrUpdate(alterOrder);
 			cartService.delete(cartId);
 		}
 		return "redirect:/show-order";
