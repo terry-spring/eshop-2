@@ -13,4 +13,9 @@ public interface ProductService {
 	public void saveOrUpdate(Product product);
 	
 	public void delete(long productId);
+
+	public List<Product> getAllWithImage();
+
+	public Product getByIdWithImage(long id);
+	
 }

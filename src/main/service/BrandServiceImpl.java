@@ -39,7 +39,7 @@ public class BrandServiceImpl implements BrandService {
 
 	@Override
 	public Brand getByName(String name) {
-		return brandRepository.findByBrandDescription(name);
+		return brandRepository.findByBrandName(name);
 	}
 
 }

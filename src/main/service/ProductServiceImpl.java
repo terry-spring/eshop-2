@@ -1,5 +1,6 @@
 package main.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void delete(long productId) {
 		productRepository.deleteById(productId);
+	}
+
+	@Override
+	public List<Product> getAllWithImage() {
+		return productRepository.findByIdIsNotNull();
+	}
+
+	@Override
+	public Product getByIdWithImage(long id) {
+		return productRepository.findById(id).orElseGet(null);
 	}
 
 }
