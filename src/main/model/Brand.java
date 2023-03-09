@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +28,8 @@ public class Brand {
 
 //	@NotBlank(message = "{brand.description.notblank}")
 //    @Size(min = 2, message = "{brand.description.size}")
-    @Column(name = "brand_description", length = 20)
-    private String brandDescription;
+    @Column(name = "brand_name", length = 20)
+    private String brandName;
     
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -46,7 +47,7 @@ public class Brand {
      * @OneToOne(mappedBy = "product") private Product product;
      */
     
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
 	private List<Product> products;
 
 	public long getId() {
@@ -57,12 +58,12 @@ public class Brand {
 		this.id = id;
 	}
 
-	public String getBrandDescription() {
-		return brandDescription;
+	public String getBrandName() {
+		return brandName;
 	}
 
-	public void setBrandDescription(String brandDescription) {
-		this.brandDescription = brandDescription;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public Date getCreateDate() {
