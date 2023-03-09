@@ -102,11 +102,12 @@ public class OrderController {
 		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/delete-order/{orderId}")
-	public String deleteOrder(@PathVariable long orderId) {
+	@GetMapping("/cancel-order/{orderId}")
+	public String cancelOrder(@PathVariable long orderId) {
 		Order order = orderService.getById(orderId);
 		if(order != null) {
-			orderService.delete(orderId);
+			order.setCancel(true);
+			orderService.saveOrUpdate(order);
 		}
 		return "redirect:/show-order";
 	}

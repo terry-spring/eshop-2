@@ -47,6 +47,9 @@ public class OrderDetail {
     @Column(name = "update_date")
     private Date updateDate = Date.from(Instant.now());
 
+    @Column(name = "cancel")
+    private boolean cancel = false;
+
     public Order getOrder() {
         return order;
     }
@@ -101,6 +104,14 @@ public class OrderDetail {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public boolean isCancel() {
+        return cancel;
+    }
+
+    public void setCancel(boolean cancel) {
+        this.cancel = cancel;
     }
 
 }

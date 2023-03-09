@@ -24,7 +24,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     @Override
     public List<OrderDetail> getByOrderId(long orderId) {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from OrderDetail where order_id = :orderId", OrderDetail.class)
+        return session.createQuery("from OrderDetail where order_id = :orderId and cancel = 0", OrderDetail.class)
                 .setParameter("orderId", orderId)
                 .list();
     }

@@ -32,7 +32,7 @@
                                 <th scope="col">購買數量</th>
                                 <th scope="col">折扣</th>
                                 <th scope="col">編輯訂單詳細內容</th>
-                                <th scope="col">刪除訂單詳細內容</th>
+                                <th scope="col">取消項目</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,13 +43,13 @@
                                 <td th:text="${orderDetail.orderQuantity}"></td>
                                 <td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(orderDetail.discount), '¤', '$'), '.00', '')}"></td>
                                 <td><a class="btn btn-primary" th:href="@{/edit-order-detail/} + ${orderDetail.orderDetailId}">編輯</a></td>
-                                <td><a class="btn btn-danger" th:href="@{/delete-order-detail/} + ${orderDetail.orderDetailId} + '/' + ${orderDetail.order.orderId}" onclick="myAsk()">刪除</a></td>
+                                <td><a class="btn btn-danger" th:href="@{/cancel-order-detail/} + ${orderDetail.orderDetailId} + '/' + ${orderDetail.order.orderId}" onclick="myAsk()">取消</a></td>
                             </tr>
                             </tbody>
                         </table>
                         <script>
 							function myAsk() {
-								if (confirm("您確定要刪除資料嗎？") == false) {
+								if (confirm("您確定要取消此項目嗎？") == false) {
 									event.preventDefault();
 								}
 							}
