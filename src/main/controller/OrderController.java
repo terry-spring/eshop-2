@@ -26,16 +26,16 @@ import main.service.OrderService;
 
 @Controller
 public class OrderController {
-	
+
 	@Autowired
 	private OrderService orderService;
-	
+
 	@Autowired
 	private OrderDetailService orderDetailService;
 
 	@Autowired
 	private CartService cartService;
-	
+
 	@GetMapping("/add-order/{cartId}")
 	public String showCartForm(@PathVariable long cartId) {
 		Cart cart = cartService.getById(cartId);
@@ -69,13 +69,13 @@ public class OrderController {
 		}
 		return "redirect:/show-order";
 	}
-	
+
 	@GetMapping("/create-order")
 	public String showForm(Model model) {
 		model.addAttribute("order", new Order());
 		return "order-form";
 	}
-	
+
 	@PostMapping("/order-process-form")
 	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -84,7 +84,7 @@ public class OrderController {
 		orderService.saveOrUpdate(order);
 		return "redirect:/show-order";
 	}
-	
+
 	@GetMapping("/show-order")
 	public String getOrder(Model model) {
 		List<Order> orders = orderService.getAll();
@@ -101,7 +101,7 @@ public class OrderController {
 		}
 		return "redirect:/show-order";
 	}
-	
+
 	@GetMapping("/cancel-order/{orderId}")
 	public String cancelOrder(@PathVariable long orderId) {
 		Order order = orderService.getById(orderId);
