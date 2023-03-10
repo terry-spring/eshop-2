@@ -23,7 +23,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Customer {
@@ -77,7 +76,7 @@ public class Customer {
 	@JoinColumn(name = "user_userId")
 	private User user;
 	
-	@Column(name = "userId")
+	@Column(name = "user_id")
 	private long userId;
 	
 	@Column(name = "all_inclusive")
@@ -89,8 +88,6 @@ public class Customer {
 			   inverseJoinColumns = @JoinColumn(name = "userId"))
 	private List<User> users;
 	
-	@NotBlank(message = "{customer.contactName.notblank}")
-	@Size(min = 2, max = 20, message = "{customer.name.size}")
 	@Column(length = 20)
 	private String keyword;
 	
@@ -185,11 +182,13 @@ public class Customer {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	public String getKeyWord() {
+
+	public String getKeyword() {
 		return keyword;
 	}
-	public void setKeyWord(String keyWord) {
-		this.keyword = keyWord;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
+	
 		
 }

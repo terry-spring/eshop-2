@@ -22,7 +22,7 @@ import main.service.UserService;
 public class LoginController {
 
 	@Autowired
-	private UserService userService;
+	public UserService userService;
 	
 	/**
 	 * @return
