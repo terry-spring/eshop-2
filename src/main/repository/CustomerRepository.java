@@ -30,4 +30,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	 @Query("SELECT c FROM Customer c WHERE CONCAT(c.companyName, c.contactName, c.phonenumber) LIKE %?1%")
 	 public List<Customer> search(@Param("keyword") String keyword);
 	
+	 public boolean existsByCompanyName(String companyName);
+	 
+	 public boolean existsByContactName(String contactName);
+	 
+	 public boolean existsByPhonenumber(String phonenumber);
 }

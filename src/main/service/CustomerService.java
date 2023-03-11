@@ -28,5 +28,11 @@ public interface CustomerService {
 //	public void addUserToCustomer(long customerId, long userId);
 	
 	public List<Customer> listAll(String keyword);
+	
+	public boolean companyNameExists(String companyName);
+	
+	public boolean contactNameExists(String contactName);
+	
+	public boolean phonenumberExists(String phonenumber);
 
 }

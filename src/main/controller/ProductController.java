@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import main.model.Product;
 import main.model.ProductImage;
-import main.service.BrandService;
 import main.service.ProductService;
 
 /**產品功能
@@ -76,9 +75,9 @@ public class ProductController {
      * @param model
      * @return
      */
-    @GetMapping("/edit-product/{productId}")
-    public String editProduct(@PathVariable long productId, Model model) {
-        Product product = productService.getById(productId);
+    @GetMapping("/edit-product/{id}")
+    public String editProduct(@PathVariable long id, Model model) {
+        Product product = productService.getById(id);
         if (product != null) {
             model.addAttribute("product", product);
             return "product-form";
@@ -90,11 +89,11 @@ public class ProductController {
      * @param productId
      * @return
      */
-    @GetMapping("/delete-product/{productId}")
-    public String deleteProduct(@PathVariable long productId) {
-        Product product = productService.getById(productId);
+    @GetMapping("/delete-product/{id}")
+    public String deleteProduct(@PathVariable long id) {
+        Product product = productService.getById(id);
         if (product != null) {
-            productService.delete(productId);
+            productService.delete(id);
         }
         return "redirect:/showProduct";
     }

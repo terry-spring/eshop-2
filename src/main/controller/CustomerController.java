@@ -1,7 +1,7 @@
 package main.controller;
 
+import java.io.IOException;
 import java.security.Principal;
-//import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,13 +11,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
-
 import main.model.Customer;
 import main.service.CustomerService;
 
@@ -48,12 +47,56 @@ public class CustomerController {
 		 * @return
 		 */
 		@PostMapping("/process-customer-form")
-		public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
+//		public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, Errors errors) throws IOException {
+			
+			if(customerService.companyNameExists(customer.getCompanyName())) {
+			  //errors.rejectValue("field name",  "message key from message.properties")
+				errors.rejectValue("companyName", "customer.inputvalid.companyName");
+			}
+			if(customerService.contactNameExists(customer.getContactName())) {
+				errors.rejectValue("contactName", "customer.inputvalid.contactName");
+			}
+			if(customerService.phonenumberExists(customer.getPhonenumber())) {
+				errors.rejectValue("phonenumber", "customer.inputvalid.phonenumber");
+//				System.out.println(errors);
+			}
+
+			if(errors.hasErrors()) {
+				return "customer-form";
+			}
 			if(bindingResult.hasErrors()) {
 				return "customer-form";
 			}
+						
+//			boolean errors = false;																																																																																													
+//			
+//			if(customerService.companyNameExists(customer.getCompanyName())) {
+//				redirectAttributes.addAttribute("companyNameExists", "該公司名稱在資料庫已存在");
+//				errors = true;
+//			}
+//			
+//			if(customerService.contactNameExists(customer.getContactName())) {
+//				redirectAttributes.addAttribute("contactNameExists", "該聯絡人在資料庫已存在");
+//				errors = true;
+//			}
+//			
+//			if(customerService.phonenumberExists(customer.getPhonenumber())) {
+//				redirectAttributes.addAttribute("phonenumberExists", "該電話號碼在資料庫已存在");
+//				errors = true;
+//			}
+//			
+//			if(errors) {			
+//				return "redirect:/add-customer";
+//			}
+//			
+//			if(bindingResult.hasErrors()) {
+//				return "customer-form";
+//			}
+			
 			customerService.saveOrUpdate(customer);
-			return "redirect:show-customer-data";
+			return "redirect:/show-customer-data";
+			
 		}
 		
 		/**

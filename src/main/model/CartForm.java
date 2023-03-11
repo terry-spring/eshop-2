@@ -8,8 +8,9 @@ public class CartForm {
 
     private String productName;
 
-    private String productImage;
-
+    private ProductImage productImage;
+//  原來是private String productImage;
+    
     private String productDescription;
 
     private BigDecimal productPrice;
@@ -32,11 +33,11 @@ public class CartForm {
         this.productName = productName;
     }
 
-    public String getProductImage() {
+    public ProductImage getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(String productImage) {
+    public void setProductImage(ProductImage productImage) {
         this.productImage = productImage;
     }
 

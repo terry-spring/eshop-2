@@ -118,4 +118,18 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepository.findAll();
 	}
 	
+	@Override
+	public boolean companyNameExists(String companyName) {
+		return customerRepository.existsByCompanyName(companyName);
+	}
+	
+	@Override
+	public boolean contactNameExists(String contactName) {
+		return customerRepository.existsByContactName(contactName);
+	}
+	
+	@Override
+	public boolean phonenumberExists(String phonenumber) {
+		return customerRepository.existsByPhonenumber(phonenumber);
+	}
 }

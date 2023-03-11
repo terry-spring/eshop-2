@@ -25,7 +25,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customerId;
+    @Column(name = "user_id")
+    private long userId;
 
     private String login;
 
@@ -43,6 +44,9 @@ public class User {
     @ManyToMany
     @JoinTable(name = "customer2user", joinColumns = @JoinColumn(name = "user_userId"), inverseJoinColumns = @JoinColumn(name = "customer_customerId"))
     private List<Customer> customers;
+    
+    @Column(name = "customer_id")
+    private long customerId;
     
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -86,14 +90,6 @@ public class User {
         this.enabled = enabled;
     }
 
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -124,5 +120,21 @@ public class User {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 }
