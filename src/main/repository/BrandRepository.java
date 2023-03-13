@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import main.model.Brand;
-import main.model.Product;
 
 /**
  * 廠牌 Repository

@@ -70,7 +70,7 @@
 	<!-- 					</div> -->
 	<!-- 					<div class="form-row"> -->
 			            	<div class="row gx-5 justify-content-center">
-				                <a th:href="@{/add-order/{cartId}}"  class="btn btn-outline-success">結帳</a>
+				                <a th:href="@{/add-order/} + ${cartDetails[0].cart.cartId}"  class="btn btn-outline-success">結帳</a>
 <!-- 				                <input class="btn btn-success" type="submit" value="結帳"> -->
 				                <a th:href="@{/}" class="btn btn-outline-primary">返回</a>
 				            </div>

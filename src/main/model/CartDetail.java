@@ -3,10 +3,8 @@ package main.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,8 +52,8 @@ public class CartDetail {
     @Column(name = "update_date")
     private Date updateDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_cart_id")
+    @ManyToOne
+	@JoinColumn(name = "cart_id")
 	private Cart cart;
 
     public long getCartDetailId() {
